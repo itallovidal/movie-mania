@@ -76,3 +76,4 @@ Este projeto está licenciado sob a Licença MIT.
 Boa codificação! 🎉
 
 Feito com ❤️ por [Italo Vidal](https://github.com/itallovidal).
+contribuição de [Guilherme Marx](https://github.com/droidmarx).
