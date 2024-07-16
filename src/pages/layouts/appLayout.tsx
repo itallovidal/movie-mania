@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
+import { Navbar } from '@/components/navbar.tsx'
 
 export function AppLayout() {
   return (
     <div>
-      <h1>navbar</h1>
+      <Navbar />
       <Outlet />
       <h1>footer</h1>
     </div>
