@@ -16,7 +16,7 @@ export function Navbar() {
           'w-full max-w-grid-width flex justify-between items-center m-auto p-2'
         }
       >
-        <Link to={'/'}>MovieMania</Link>
+        <Link className={'font-black font-josefin text-2xl'} to={'/'}>MovieMania</Link>
         <nav>
           <Navlink to={'/profile'}>Perfil</Navlink>
           <Navlink to={'/#all'}>Todos</Navlink>
