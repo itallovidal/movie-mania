@@ -3,10 +3,9 @@ import { Navbar } from '@/components/navbar.tsx'
 
 export function AppLayout() {
   return (
-    <div>
+    <div className={'text-white bg-darkBlue h-screen'}>
       <Navbar />
       <Outlet />
-      <h1>footer</h1>
     </div>
   )
 }

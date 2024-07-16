@@ -9,6 +9,10 @@ module.exports = {
   ],
   prefix: '',
   theme: {
+    fontFamily: {
+      josefin: ['Josefin Sans'],
+      roboto: ['Roboto'],
+    },
     container: {
       center: true,
       padding: '2rem',
@@ -17,10 +21,14 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'home-background': "url('/src/assets/home/headerBackdrop.png')",
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        darkBlue: '#000D14',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
@@ -70,6 +78,9 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      spacing: {
+        'grid-width': '59rem',
       },
     },
   },

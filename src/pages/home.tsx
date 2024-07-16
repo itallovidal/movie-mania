@@ -1,3 +1,5 @@
+import { Header } from '@/components/home/header.tsx'
+
 export function Home() {
-  return <div>home</div>
+  return <Header />
 }

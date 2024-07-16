@@ -2,26 +2,26 @@ import { Navlink } from '@/components/navlink.tsx'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu.tsx'
 import { Button } from '@/components/ui/button.tsx'
+import { Link } from 'react-router-dom'
 
 export function Navbar() {
   return (
-    <div className={'w-full blue bg-primary'}>
+    <div className={'w-full blue bg-darkBlue'}>
       <div
         className={
-          'w-full max-w-[1200px] flex justify-between items-center m-auto p-2'
+          'w-full max-w-grid-width flex justify-between items-center m-auto p-2'
         }
       >
-        <Navlink to={'/'}>MovieMania</Navlink>
+        <Link to={'/'}>MovieMania</Link>
         <nav>
           <Navlink to={'/profile'}>Perfil</Navlink>
           <Navlink to={'/#all'}>Todos</Navlink>
           <Navlink to={'/#foryou'}>Para você</Navlink>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant={'ghost'} className={'text-background'}>
