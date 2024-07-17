@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import {
   Popover,
@@ -6,7 +5,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover.tsx'
 
-import { ChevronDown, ChevronsUpDown, Lightbulb, Search } from 'lucide-react'
+import { Lightbulb, Search } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
 import { SearchResult } from '@/components/searchResult.tsx'
 
