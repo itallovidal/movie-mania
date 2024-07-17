@@ -1,6 +1,7 @@
 import { Header } from '@/components/home/header.tsx'
 import { MoviesSection } from '@/components/MoviesSection.tsx'
-import { Dialog, DialogContent } from '@/components/ui/dialog.tsx'
+import { Dialog } from '@/components/ui/dialog.tsx'
+import { MovieDetails } from '@/components/MovieDetails.tsx'
 
 export function Home() {
   return (
@@ -14,9 +15,7 @@ export function Home() {
           <MoviesSection />
         </div>
 
-        <DialogContent>
-          <h1>Focofocofoco</h1>
-        </DialogContent>
+        <MovieDetails />
       </Dialog>
     </>
   )

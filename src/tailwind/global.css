@@ -76,4 +76,17 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+
+  .backdropLowOpacity:after{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: black;
+    opacity: 60%;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+  }
 }
