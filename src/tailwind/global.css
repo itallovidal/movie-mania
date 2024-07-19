@@ -89,4 +89,8 @@
     top: 0;
     left: 0;
   }
+
+  .grid-profile-template{
+    @apply bg-background text-foreground;
+  }
 }
