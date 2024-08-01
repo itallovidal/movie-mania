@@ -1,10 +1,5 @@
 import { MoviesSection } from '@/components/MoviesSection.tsx'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from '@/components/ui/card.tsx'
+import { Card, CardContent, CardTitle } from '@/components/ui/card.tsx'
 import { Separator } from '@radix-ui/react-dropdown-menu'
 import { Badge } from '@/components/ui/badge.tsx'
 import { Dialog } from '@/components/ui/dialog.tsx'
