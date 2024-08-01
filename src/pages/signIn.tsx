@@ -6,17 +6,23 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input.tsx'
 import { Button } from '@/components/ui/button.tsx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
+import { signIn } from '@/api/sign-in.ts'
+import { toast } from 'sonner'
+import { useContext } from 'react'
+import { GlobalContext } from '@/components/globalContext.tsx'
 
 const signSchema = z.object({
-  username: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
+  email: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
   password: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
 })
 
 export interface ISignInSchema extends z.infer<typeof signSchema> {}
 
 export function SignIn() {
+  const { handleSetToken, handleNavigate } = useContext(GlobalContext)
+
   const {
     handleSubmit,
     register,
@@ -26,7 +32,22 @@ export function SignIn() {
   })
 
   async function handleSignIn(data: ISignInSchema) {
-    console.log(data)
+    try {
+      const token = await signIn(data)
+      handleSetToken(token)
+      toast.success('Usuário logado com sucesso!')
+
+      setTimeout(() => {
+        handleNavigate('/')
+      }, 1000)
+    } catch (e) {
+      if (e instanceof Error) {
+        toast.error(e.message)
+        return
+      }
+
+      toast.error('Erro interno do servidor')
+    }
   }
 
   return (
@@ -40,12 +61,12 @@ export function SignIn() {
         <div className={'flex flex-col gap-2'}>
           <p className={'text-lg font-semibold font-roboto'}>Nome</p>
           <Input
-            {...register('username')}
-            id={'username'}
+            {...register('email')}
+            id={'email'}
             placeholder={'Digite seu nome..'}
           />
-          {errors.username && (
-            <span className={'text-rose-700'}>{errors.username.message}</span>
+          {errors.email && (
+            <span className={'text-rose-700'}>{errors.email.message}</span>
           )}
         </div>
 
