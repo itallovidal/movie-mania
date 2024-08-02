@@ -7,11 +7,15 @@ export function Stars({ rating }: { rating: number }) {
       {Array.from({ length: 5 }, (_, i) => {
         if (rating >= i + 1) {
           return (
-            <Star color={colors.yellow['500']} fill={colors.yellow['500']} />
+            <Star
+              key={i}
+              color={colors.yellow['500']}
+              fill={colors.yellow['500']}
+            />
           )
         }
 
-        return <Star color={colors.yellow['500']} />
+        return <Star key={i} color={colors.yellow['500']} />
       })}
     </div>
   )
