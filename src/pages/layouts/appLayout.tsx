@@ -6,7 +6,6 @@ import { GlobalContext } from '@/components/globalContext.tsx'
 export function AppLayout() {
   const { pathname } = useLocation()
   const { handleNavigate, userToken } = useContext(GlobalContext)
-  console.log(pathname)
 
   useEffect(() => {
     if (pathname === '/profile' && !userToken) {

@@ -14,40 +14,52 @@ import {
 } from '@/components/ui/select.tsx'
 import { Link } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
+import { signUp } from '@/api/sign-up.ts'
+import { toast } from 'sonner'
+import { useContext } from 'react'
+import { GlobalContext } from '@/components/globalContext.tsx'
+import { GENRES } from '@/@types/genres.ts'
 
 const signUpSchema = z
   .object({
+    email: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
     username: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
     password: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
-    favGenre1: z
-      .number({
-        required_error: 'Por favor escolhe o gênero favorito.',
-      })
-      .min(1),
-    favGenre2: z.number().min(1),
+    favGenre1: z.string(),
+    favGenre2: z.string(),
   })
-  .refine(
-    ({ favGenre1, favGenre2 }) =>
-      favGenre1 === favGenre2 && {
-        message: 'Os gêneros devem ser diferentes.',
-        path: ['favGenre1'],
-      },
-  )
+  .refine(({ favGenre1, favGenre2 }) => favGenre1 !== favGenre2, {
+    message: 'Os gêneros devem ser diferentes.',
+    path: ['favGenre1'],
+  })
 
-export interface ISignUp extends z.infer<typeof signUpSchema> {}
+export interface ISignUpSchema extends z.infer<typeof signUpSchema> {}
 
 export function SignUp() {
+  const { handleNavigate } = useContext(GlobalContext)
   const {
     handleSubmit,
     register,
     control,
     formState: { errors },
-  } = useForm<ISignUp>({
+  } = useForm<ISignUpSchema>({
     resolver: zodResolver(signUpSchema),
   })
 
-  async function handleSignIn(data: ISignUp) {
-    console.log(data)
+  console.log(errors)
+
+  async function handleSignIn(data: ISignUpSchema) {
+    try {
+      await signUp(data)
+      toast.success('Bem vindo!')
+
+      setTimeout(() => {
+        toast.success('Faça o login com sua nova conta!')
+        handleNavigate('/sign-in')
+      }, 1000)
+    } catch (e) {
+      toast.success(e.message)
+    }
   }
 
   return (
@@ -57,6 +69,18 @@ export function SignUp() {
         onSubmit={handleSubmit(handleSignIn)}
       >
         <h1 className={'font-josefin mt-4 text-4xl text-center'}>MovieMania</h1>
+
+        <div className={'flex flex-col gap-2'}>
+          <p className={'text-lg font-semibold font-roboto'}>Email</p>
+          <Input
+            {...register('email')}
+            id={'email'}
+            placeholder={'Digite seu nome..'}
+          />
+          {errors.email && (
+            <span className={'text-rose-700'}>{errors.email.message}</span>
+          )}
+        </div>
 
         <div className={'flex flex-col gap-2'}>
           <p className={'text-lg font-semibold font-roboto'}>Nome</p>
@@ -95,15 +119,16 @@ export function SignUp() {
                     <SelectValue placeholder="Primeiro Gênero Favorito" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem className={'cursor-pointer'} value="light">
-                      Light
-                    </SelectItem>
-                    <SelectItem className={'cursor-pointer'} value="dark">
-                      Dark
-                    </SelectItem>
-                    <SelectItem className={'cursor-pointer'} value="system">
-                      System
-                    </SelectItem>
+                    {GENRES.map((genre) => {
+                      return (
+                        <SelectItem
+                          className={'cursor-pointer'}
+                          value={genre.id.toString()}
+                        >
+                          {genre.name}
+                        </SelectItem>
+                      )
+                    })}
                   </SelectContent>
                 </Select>
               )
@@ -120,15 +145,16 @@ export function SignUp() {
                     <SelectValue placeholder="Segundo Gênero Favorito" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem className={'cursor-pointer'} value="light">
-                      Light
-                    </SelectItem>
-                    <SelectItem className={'cursor-pointer'} value="dark">
-                      Dark
-                    </SelectItem>
-                    <SelectItem className={'cursor-pointer'} value="system">
-                      System
-                    </SelectItem>
+                    {GENRES.map((genre) => {
+                      return (
+                        <SelectItem
+                          className={'cursor-pointer'}
+                          value={genre.id.toString()}
+                        >
+                          {genre.name}
+                        </SelectItem>
+                      )
+                    })}
                   </SelectContent>
                 </Select>
               )
@@ -137,9 +163,7 @@ export function SignUp() {
           />
 
           {(errors.favGenre1 || errors.favGenre2) && (
-            <span className={'text-rose-700'}>
-              Escolha os seus gêneros favoritos.
-            </span>
+            <span className={'text-rose-700'}>{errors.favGenre1?.message}</span>
           )}
         </div>
 
@@ -154,7 +178,7 @@ export function SignUp() {
         }
       >
         <p className={'text-md font-semibold'}>Você já é cadastrado?</p>
-        <Link to={'sign-in'}>
+        <Link to={'/sign-in'}>
           <Button variant={'outline'}>Entrar</Button>
         </Link>
       </div>

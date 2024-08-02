@@ -5,6 +5,7 @@ interface IGlobalContextProps {
   userToken: string | null
   handleSetToken: ({ token: string }) => void
   handleNavigate: (route: string) => void
+  handleLogOut: () => void
 }
 
 export const GlobalContext = createContext({} as IGlobalContextProps)
@@ -23,6 +24,12 @@ export function GlobalContextProvider({ children }) {
   function handleNavigate(route: string) {
     navigate(route)
   }
+  function handleLogOut() {
+    localStorage.clear()
+    setToken(null)
+    navigate('/')
+  }
+
   function handleSetToken({ token }: { token: string }) {
     localStorage.setItem('user-token', JSON.stringify(token))
     setToken(token)
@@ -30,7 +37,7 @@ export function GlobalContextProvider({ children }) {
 
   return (
     <GlobalContext.Provider
-      value={{ userToken, handleSetToken, handleNavigate }}
+      value={{ userToken, handleSetToken, handleNavigate, handleLogOut }}
     >
       {children}
     </GlobalContext.Provider>

@@ -4,8 +4,11 @@ import { DialogContent } from '@/components/ui/dialog.tsx'
 import { PostedComment } from '@/components/postedComment.tsx'
 import { ScrollArea } from '@/components/ui/scroll-area.tsx'
 import { CommentBox } from '@/components/commentBox.tsx'
+import { IMovie } from '@/@types/IMovie.ts'
+import { Badge } from '@/components/ui/badge.tsx'
+import backdropPlaceholder from '../assets/home/headerBackdrop.png'
 
-export function MovieDetails() {
+export function MovieDetails({ movie }: { movie: IMovie }) {
   return (
     <DialogContent
       className={
@@ -14,31 +17,35 @@ export function MovieDetails() {
     >
       <ScrollArea className={'max-h-[800px]'}>
         <div className={'relative backdropLowOpacity'}>
-          <div
-            className={
-              'w-full bg-[url(https://image.tmdb.org/t/p/w500/xJWPZIYOEFIjZpBL7SVBGnzRYXp.jpg)] bg-no-repeat bg-cover text-white'
-            }
-          >
+          <picture className={'absolute top-0 left-0  w-full h-full'}>
+            <img
+              className={'w-full h-full object-cover'}
+              src={
+                movie.backdrop_path
+                  ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                  : backdropPlaceholder
+              }
+              alt=""
+            />
+          </picture>
+          <div className={`w-full  bg-yellow-400  text-white`}>
             <div
               className={
-                'relative z-10 grid grid-cols-8 justify-items-end gap-4 min-h-[410px] pt-8'
+                'relative z-10 grid grid-cols-8 gap-4 min-h-[410px] py-8 '
               }
             >
-              <div className={'col-start-2 col-end-5'}>
-                <ImageCover />
+              <div className={'col-start-3 col-span-2 row-start-1'}>
+                <ImageCover display={'initial'} cover={movie.poster_path} />
               </div>
-              <div className={'col-start-5 col-span-3'}>
+              <div className={'col-start-5 row-start-1 col-span-2'}>
                 <h1 className={'text-4xl font-josefin'}>Frozen</h1>
-                <p>
-                  Elsa, Anna, Kristoff, Olaf e Sven se aventuram na floresta
-                  encantada e nos mares escuros além de Arendelle – onde Elsa
-                  descobre não apenas a verdade sobre seu passado, mas uma
-                  ameaça ao seu reino.
-                </p>
-                <Stars rating={4} />
+                <p>{movie.overview || 'Sem resumos disponíveis.'}</p>
+                <Stars rating={movie.vote_average} />
 
-                <p> drama / suspense </p>
-                <p> 02/01/2020 </p>
+                {movie.genres.map((genre) => {
+                  return <Badge>{genre.name}</Badge>
+                })}
+                <p> {movie.release_date} </p>
               </div>
             </div>
           </div>

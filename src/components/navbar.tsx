@@ -1,14 +1,12 @@
 import { Navlink } from '@/components/navlink.tsx'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu.tsx'
-import { Button } from '@/components/ui/button.tsx'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { GlobalContext } from '@/components/globalContext.tsx'
+import { GenresDropdown } from '@/components/genres-dropdown.tsx'
+import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
 
 export function Navbar() {
+  const { userToken } = useContext(GlobalContext)
   return (
     <div className={'w-full blue bg-darkBlue'}>
       <div
@@ -16,42 +14,16 @@ export function Navbar() {
           'w-full max-w-grid-width flex justify-between items-center m-auto p-2'
         }
       >
-        <Link className={'font-black font-josefin text-2xl'} to={'/'}>MovieMania</Link>
-        <nav>
-          <Navlink to={'/profile'}>Perfil</Navlink>
-          <Navlink to={'/#all'}>Todos</Navlink>
+        <Link className={'font-black font-josefin text-2xl'} to={'/'}>
+          MovieMania
+        </Link>
+        <nav className={'space-x-2'}>
+          <Navlink to={'/'}>Todos</Navlink>
           <Navlink to={'/#foryou'}>Para você</Navlink>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant={'ghost'} className={'text-background'}>
-                Categorias
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className={'bg-primary'}>
-              <DropdownMenuLabel>
-                <Navlink to={'/#comedy'}>Comédia</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#crime'}>Crime</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#action'}>Ação</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#documentary'}>Documentário</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#drama'}>Drama</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#adventure'}>Aventura</Navlink>
-              </DropdownMenuLabel>
-              <DropdownMenuLabel>
-                <Navlink to={'/#animation'}>Animação</Navlink>
-              </DropdownMenuLabel>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <GenresDropdown />
+          {userToken && <ProfileDropdown />}
+          {!userToken && <Navlink to={'/sign-in'}>Entrar</Navlink>}
+          {!userToken && <Navlink to={'/sign-up'}>Criar conta</Navlink>}
         </nav>
       </div>
     </div>
