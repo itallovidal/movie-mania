@@ -7,8 +7,6 @@ export const getMoviesByGenreMock = http.get(
   async ({ params }) => {
     const genre = params[0]
 
-    console.log('aqui')
-    console.log(genre)
     if (!genre) {
       return new HttpResponse('Gênero não fornecido', {
         status: 400,

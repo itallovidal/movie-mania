@@ -1,16 +1,85 @@
 import { Textarea } from '@/components/ui/textarea.tsx'
 import { Button } from '@/components/ui/button.tsx'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'sonner'
+import { postComment } from '@/api/post-comment.ts'
+import { useContext } from 'react'
+import { GlobalContext } from '@/components/globalContext.tsx'
+import { useMutation } from '@tanstack/react-query'
+import { queryClient } from '@/lib/reactQuery.ts'
 
-export function CommentBox() {
+const commentSchema = z.object({
+  text: z.string().min(3),
+})
+
+export interface ICommentSchema extends z.infer<typeof commentSchema> {}
+export function CommentBox({ movieId }: { movieId: number }) {
+  const { userToken } = useContext(GlobalContext)
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm<ICommentSchema>({
+    resolver: zodResolver(commentSchema),
+  })
+
+  const { mutateAsync: postCommentMutation } = useMutation({
+    mutationFn: postComment,
+    onSuccess: (data) => {
+      const cached = queryClient.getQueryData(['comments'])
+
+      const newComments = [...cached, data]
+
+      console.log(newComments)
+
+      if (cached) {
+        queryClient.setQueryData(['comments'], newComments)
+      }
+    },
+  })
+
+  async function handlePostComment(data: ICommentSchema) {
+    try {
+      if (userToken) {
+        await postCommentMutation({
+          token: userToken,
+          movieId,
+          comment: data.text,
+        })
+        toast.success('Comentário postado com sucesso!')
+        reset()
+      }
+    } catch (e) {
+      toast.error('Ops, não foi possível commentar.')
+    }
+  }
+
   return (
-    <div className={'text-white px-24 my-12'}>
-      <Textarea className={'text-darkBlue'} />
+    <form
+      onSubmit={handleSubmit(handlePostComment)}
+      className={'text-white px-24 my-12'}
+    >
+      <Textarea
+        {...register('text')}
+        placeholder="type here"
+        type="text"
+        className={'text-darkBlue mb-4'}
+        name={'text'}
+      />
+      {errors.text?.message && (
+        <span className={'text-rose-500'}>{errors.text?.message}</span>
+      )}
       <div className={'flex justify-between mt-4'}>
         <span className={'text-muted-foreground'}>
           Ajude a tornar a área de comentários segura. Seja gentil.
         </span>
-        <Button variant={'ghost'}>Enviar.</Button>
+        <Button type={'submit'} variant={'ghost'}>
+          Enviar
+        </Button>
       </div>
-    </div>
+    </form>
   )
 }

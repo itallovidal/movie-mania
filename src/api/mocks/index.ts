@@ -7,6 +7,7 @@ import { signUpMock } from '@/api/mocks/sign-up-mock.ts'
 import { getCommentsMock } from '@/api/mocks/get-comments-mock.ts'
 import { getListsMock } from '@/api/mocks/get-lists-mock.ts'
 import { getMovieList } from '@/api/mocks/get-movie-list.ts'
+import { postCommentMock } from '@/api/mocks/post-comment-mock.ts'
 
 export const worker = setupWorker(
   signInMock,
@@ -16,6 +17,7 @@ export const worker = setupWorker(
   getCommentsMock,
   getListsMock,
   getMovieList,
+  postCommentMock,
 )
 
 export async function setupMSW() {

@@ -15,7 +15,7 @@ export function AppRoutes() {
         <Routes>
           <Route path={'/'} element={<AppLayout />}>
             <Route path={'/'} element={<Home />} />
-            <Route path={'/more/:id'} element={<GenreMovieList />} />
+            <Route path={'/movies/:id'} element={<GenreMovieList />} />
             <Route path={'/profile'} element={<Profile />} />
           </Route>
 

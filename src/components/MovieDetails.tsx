@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge.tsx'
 import backdropPlaceholder from '../assets/home/headerBackdrop.png'
 import { useQuery } from '@tanstack/react-query'
 import { getMovieComments } from '@/api/get-movie-comments.ts'
+import { useContext } from 'react'
+import { GlobalContext } from '@/components/globalContext.tsx'
 
 export function MovieDetails({
   movie,
@@ -17,8 +19,9 @@ export function MovieDetails({
   movie: IMovie
   isEnabled: boolean
 }) {
+  const { userToken } = useContext(GlobalContext)
   const { data: comments } = useQuery({
-    queryKey: ['comments', isEnabled],
+    queryKey: ['comments'],
     queryFn: () => getMovieComments(movie.id),
     enabled: isEnabled,
   })
@@ -73,13 +76,14 @@ export function MovieDetails({
             'mt-12 px-24 max-h-[450px] overflow-y-scroll no-scrollbar mb-12'
           }
         >
-          {comments &&
+          {comments?.length &&
             comments.map((comment) => {
               return <PostedComment key={comment.id} comment={comment} />
             })}
         </div>
 
-        <CommentBox />
+        {userToken && <CommentBox movieId={movie.id} />}
+
         <div
           className={
             'text-white flex justify-center flex-col items-center mb-16'

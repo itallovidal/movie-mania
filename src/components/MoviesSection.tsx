@@ -31,7 +31,7 @@ export function MoviesSection({ name, id }: IMovieSectionProps) {
           {name}
         </h1>
 
-        <Link to={`/more/${id}`}>
+        <Link to={`/movies/${id}`}>
           <Button variant={'ghost'}>
             Ver mais <ChevronRight />
           </Button>
