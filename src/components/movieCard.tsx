@@ -4,10 +4,13 @@ import { ImageCover } from '@/components/imageCover.tsx'
 import { IMovie } from '@/@types/IMovie.ts'
 import { Dialog } from '@radix-ui/react-dialog'
 import { MovieDetails } from '@/components/MovieDetails.tsx'
+import { useState } from 'react'
 
 export function MovieCard({ movie }: { movie: IMovie }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <div>
           <ImageCover cover={movie.poster_path} />
@@ -17,7 +20,7 @@ export function MovieCard({ movie }: { movie: IMovie }) {
           <Stars rating={Math.round(movie.vote_average / 2)} />
         </div>
       </DialogTrigger>
-      <MovieDetails movie={movie} />
+      <MovieDetails movie={movie} isEnabled={isDialogOpen} />
     </Dialog>
   )
 }

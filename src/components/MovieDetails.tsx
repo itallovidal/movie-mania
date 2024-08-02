@@ -7,8 +7,22 @@ import { CommentBox } from '@/components/commentBox.tsx'
 import { IMovie } from '@/@types/IMovie.ts'
 import { Badge } from '@/components/ui/badge.tsx'
 import backdropPlaceholder from '../assets/home/headerBackdrop.png'
+import { useQuery } from '@tanstack/react-query'
+import { getMovieComments } from '@/api/get-movie-comments.ts'
 
-export function MovieDetails({ movie }: { movie: IMovie }) {
+export function MovieDetails({
+  movie,
+  isEnabled,
+}: {
+  movie: IMovie
+  isEnabled: boolean
+}) {
+  const { data: comments } = useQuery({
+    queryKey: ['comments'],
+    queryFn: () => getMovieComments(movie.id),
+    enabled: isEnabled,
+  })
+
   return (
     <DialogContent
       className={
@@ -56,13 +70,10 @@ export function MovieDetails({ movie }: { movie: IMovie }) {
             'mt-12 px-24 max-h-[450px] overflow-y-scroll no-scrollbar mb-12'
           }
         >
-          <PostedComment />
-          <PostedComment />
-          <PostedComment />
-          <PostedComment />
-          <PostedComment />
-          <PostedComment />
-          <PostedComment />
+          {comments &&
+            comments.map((comment) => {
+              return <PostedComment comment={comment} />
+            })}
         </div>
 
         <CommentBox />
