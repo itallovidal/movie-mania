@@ -11,7 +11,6 @@ export function GenreMovieList() {
   const { data: movies } = useQuery({
     queryKey: [id],
     queryFn: () => getMoviesByGenre(Number(id)),
-    staleTime: Infinity,
   })
 
   if (!movies) return <></>
@@ -19,25 +18,19 @@ export function GenreMovieList() {
   return (
     <>
       <Header />
-      <Dialog>
-        <div className={`max-w-grid-width m-auto`}>
-          <div
-            className={
-              '-mt-8  gap-y-24 flex-wrap flex justify-between flex-row '
-            }
-          >
-            {movies.map((movie) => {
-              return (
-                <div className={'w-1/4'}>
-                  <MovieCard movie={movie} />
-                </div>
-              )
-            })}
-          </div>
+      <div className={`max-w-grid-width m-auto`}>
+        <div
+          className={'-mt-8  gap-y-24 flex-wrap flex justify-between flex-row '}
+        >
+          {movies.map((movie) => {
+            return (
+              <div key={movie.id} className={'w-1/4'}>
+                <MovieCard movie={movie} />
+              </div>
+            )
+          })}
         </div>
-
-        <MovieDetails />
-      </Dialog>
+      </div>
     </>
   )
 }

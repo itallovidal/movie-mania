@@ -15,9 +15,15 @@ export function GenresDropdown() {
           Categorias
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className={'bg-primary border-0 flex-col flex'}>
+      <DropdownMenuContent
+        className={'bg-semiDarkBlue  border-0 flex-col flex'}
+      >
         {GENRES.map((genre) => {
-          return <Navlink to={`/more/${genre.id}`}>{genre.name}</Navlink>
+          return (
+            <Navlink key={genre.id} to={`/more/${genre.id}`}>
+              {genre.name}
+            </Navlink>
+          )
         })}
       </DropdownMenuContent>
     </DropdownMenu>

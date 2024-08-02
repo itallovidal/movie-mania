@@ -8,7 +8,7 @@ export function PostedComment({ comment }: { comment: IComment }) {
         <span className={'text-1xl'}>{comment.name}</span>
         <Stars rating={comment.rating} />
       </div>
-      <p className={'p-4 bg-blue-950 rounded-md'}>{comment.text}</p>
+      <p className={'p-4 bg-semiDarkBlue rounded-md'}>{comment.text}</p>
       <span className={'self-end'}>{comment.created_at}</span>
     </div>
   )

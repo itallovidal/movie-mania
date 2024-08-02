@@ -18,7 +18,7 @@ export function ProfileDropdown() {
           Conta
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className={'bg-gray-900 border-0'}>
+      <DropdownMenuContent className={'bg-semiDarkBlue border-0'}>
         <DropdownMenuLabel>
           <Navlink to={'/profile'}>Meu perfil</Navlink>
         </DropdownMenuLabel>

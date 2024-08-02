@@ -4,11 +4,10 @@ import { Button } from '@/components/ui/button.tsx'
 export function CommentBox() {
   return (
     <div className={'text-white px-24 my-12'}>
-      <span>Nome</span>
-      <Textarea />
+      <Textarea className={'text-darkBlue'} />
       <div className={'flex justify-between mt-4'}>
         <span className={'text-muted-foreground'}>
-          Ajude a tornar a área de comentários segura, seja gentil.
+          Ajude a tornar a área de comentários segura. Seja gentil.
         </span>
         <Button variant={'ghost'}>Enviar.</Button>
       </div>

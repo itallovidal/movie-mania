@@ -18,7 +18,7 @@ export function MovieDetails({
   isEnabled: boolean
 }) {
   const { data: comments } = useQuery({
-    queryKey: ['comments'],
+    queryKey: ['comments', isEnabled],
     queryFn: () => getMovieComments(movie.id),
     enabled: isEnabled,
   })
@@ -31,7 +31,7 @@ export function MovieDetails({
     >
       <ScrollArea className={'max-h-[800px]'}>
         <div className={'relative backdropLowOpacity'}>
-          <picture className={'absolute top-0 left-0  w-full h-full'}>
+          <picture className={'absolute top-0 left-0 w-full h-full'}>
             <img
               className={'w-full h-full object-cover'}
               src={
@@ -42,7 +42,7 @@ export function MovieDetails({
               alt=""
             />
           </picture>
-          <div className={`w-full  bg-yellow-400  text-white`}>
+          <div className={`w-full text-white`}>
             <div
               className={
                 'relative z-10 grid grid-cols-8 gap-4 min-h-[410px] py-8 '
@@ -51,13 +51,16 @@ export function MovieDetails({
               <div className={'col-start-3 col-span-2 row-start-1'}>
                 <ImageCover display={'initial'} cover={movie.poster_path} />
               </div>
-              <div className={'col-start-5 row-start-1 col-span-2'}>
-                <h1 className={'text-4xl font-josefin'}>Frozen</h1>
-                <p>{movie.overview || 'Sem resumos disponíveis.'}</p>
+              <div className={'col-start-5 space-y-4 row-start-1 col-span-2'}>
+                <div>
+                  <h1 className={'text-4xl font-josefin'}>Frozen</h1>
+                  <p>{movie.overview || 'Sem resumos disponíveis.'}</p>
+                </div>
+
                 <Stars rating={movie.vote_average} />
 
                 {movie.genres.map((genre) => {
-                  return <Badge>{genre.name}</Badge>
+                  return <Badge key={genre.id}>{genre.name}</Badge>
                 })}
                 <p> {movie.release_date} </p>
               </div>
@@ -72,7 +75,7 @@ export function MovieDetails({
         >
           {comments &&
             comments.map((comment) => {
-              return <PostedComment comment={comment} />
+              return <PostedComment key={comment.id} comment={comment} />
             })}
         </div>
 
