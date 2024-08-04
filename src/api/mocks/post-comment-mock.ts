@@ -3,7 +3,7 @@ import { IComment } from '@/@types/IComment.ts'
 import { ICommentSchema } from '@/components/commentBox.tsx'
 
 export const postCommentMock = http.post<never, ICommentSchema>(
-  'movies/comments/*',
+  'movies/comment/*',
   async ({ request }) => {
     const { text } = await request.json()
     console.log('Comentário:')
@@ -19,10 +19,12 @@ export const postCommentMock = http.post<never, ICommentSchema>(
     return HttpResponse.json<IComment>(
       {
         id: 4,
-        created_at: '25/05/10',
-        text,
-        rating: 4,
-        name: 'admin',
+        created_at: 'Há 1 hora.',
+        comment: text,
+        user: {
+          rating: 4,
+          name: 'admin',
+        },
       },
       {
         status: 200,

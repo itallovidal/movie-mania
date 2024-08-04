@@ -1,6 +1,6 @@
 import { Stars } from '@/components/Stars.tsx'
 import { ImageCover } from '@/components/imageCover.tsx'
-import { DialogContent } from '@/components/ui/dialog.tsx'
+import { DialogContent, DialogTitle } from '@/components/ui/dialog.tsx'
 import { PostedComment } from '@/components/postedComment.tsx'
 import { ScrollArea } from '@/components/ui/scroll-area.tsx'
 import { CommentBox } from '@/components/commentBox.tsx'
@@ -28,10 +28,12 @@ export function MovieDetails({
 
   return (
     <DialogContent
+      title={`${movie.title} Details`}
       className={
         'bg-darkBlue min-w-grid-width p-0 overflow-hidden border-0 outline-0'
       }
     >
+      <DialogTitle>`${movie.title} Details`</DialogTitle>
       <ScrollArea className={'max-h-[800px]'}>
         <div className={'relative backdropLowOpacity'}>
           <picture className={'absolute top-0 left-0 w-full h-full'}>
@@ -56,7 +58,7 @@ export function MovieDetails({
               </div>
               <div className={'col-start-5 space-y-4 row-start-1 col-span-2'}>
                 <div>
-                  <h1 className={'text-4xl font-josefin'}>Frozen</h1>
+                  <h1 className={'text-4xl font-josefin'}>{movie.title}</h1>
                   <p>{movie.overview || 'Sem resumos disponíveis.'}</p>
                 </div>
 

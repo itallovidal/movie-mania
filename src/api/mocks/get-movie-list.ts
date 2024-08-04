@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { IMovieList } from '@/IMovieList.ts'
+import { IMovieList } from '@/@types/IMovieList.ts'
 
 export const getMovieList = http.get('/lists/*', async ({ params }) => {
   const id = params[0]

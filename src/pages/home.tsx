@@ -8,7 +8,9 @@ export function Home() {
       <Header />
       <div className={'-mt-8  flex flex-col gap-12'}>
         {GENRES.map((genre) => {
-          return <MoviesSection name={genre.name} id={genre.id} />
+          return (
+            <MoviesSection key={genre.id} name={genre.name} id={genre.id} />
+          )
         })}
       </div>
     </>

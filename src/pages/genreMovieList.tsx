@@ -1,6 +1,4 @@
 import { Header } from '@/components/home/header.tsx'
-import { Dialog } from '@/components/ui/dialog.tsx'
-import { MovieDetails } from '@/components/MovieDetails.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getMoviesByGenre } from '@/api/get-movies-by-genre.ts'
 import { MovieCard } from '@/components/movieCard.tsx'

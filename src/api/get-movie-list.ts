@@ -1,5 +1,5 @@
 import { api } from '@/lib/axios.config.ts'
-import { IMovieList } from '@/IMovieList.ts'
+import { IMovieList } from '@/@types/IMovieList.ts'
 
 export async function getMovieList(
   token: string,

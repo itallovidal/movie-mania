@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input.tsx'
 import { Button } from '@/components/ui/button.tsx'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
 import { signIn } from '@/api/sign-in.ts'
 import { toast } from 'sonner'
@@ -93,8 +93,8 @@ export function SignIn() {
         }
       >
         <p className={'text-md font-semibold'}>Não possui conta?</p>
-        <Link to={'sign-up'}>
-          <Button variant={'outline'}>Criar</Button>
+        <Link to={'/sign-up'}>
+          <Button variant={'outline'}>Criar Conta</Button>
         </Link>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { IComment } from '@/@types/IComment.ts'
 
 export const getCommentsMock = http.get(
-  '/movies/comments/*',
+  '/movies/comment/*',
   async ({ params }) => {
     const id = params[0]
 
@@ -16,17 +16,21 @@ export const getCommentsMock = http.get(
       [
         {
           id: 1,
-          created_at: '21/05/10',
-          text: 'Bom demais esse filme!',
-          rating: 4,
-          name: 'Thaissa',
+          created_at: 'Há 1 hora',
+          comment: 'Bom demais!',
+          user: {
+            rating: 5,
+            name: 'Miguel',
+          },
         },
         {
           id: 2,
-          created_at: '22/06/10',
-          text: 'Achei meio chato..',
-          rating: 2,
-          name: 'Pedro',
+          created_at: 'Há 1 hora',
+          comment: 'Quero muito ver, estou ansioso!',
+          user: {
+            rating: null,
+            name: 'Fábio',
+          },
         },
       ],
       {

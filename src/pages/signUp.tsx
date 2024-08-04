@@ -25,13 +25,16 @@ const signUpSchema = z
     email: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
     username: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
     password: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),
-    favGenre1: z.string(),
-    favGenre2: z.string(),
+    favoriteGenre1: z.string(),
+    favoriteGenre2: z.string(),
   })
-  .refine(({ favGenre1, favGenre2 }) => favGenre1 !== favGenre2, {
-    message: 'Os gêneros devem ser diferentes.',
-    path: ['favGenre1'],
-  })
+  .refine(
+    ({ favoriteGenre1, favoriteGenre2 }) => favoriteGenre1 !== favoriteGenre2,
+    {
+      message: 'Os gêneros devem ser diferentes.',
+      path: ['favoriteGenre1'],
+    },
+  )
 
 export interface ISignUpSchema extends z.infer<typeof signUpSchema> {}
 
@@ -133,7 +136,7 @@ export function SignUp() {
                 </Select>
               )
             }}
-            name={'favGenre1'}
+            name={'favoriteGenre1'}
           />
 
           <Controller
@@ -159,11 +162,13 @@ export function SignUp() {
                 </Select>
               )
             }}
-            name={'favGenre2'}
+            name={'favoriteGenre2'}
           />
 
-          {(errors.favGenre1 || errors.favGenre2) && (
-            <span className={'text-rose-700'}>{errors.favGenre1?.message}</span>
+          {(errors.favoriteGenre1 || errors.favoriteGenre2) && (
+            <span className={'text-rose-700'}>
+              {errors.favoriteGenre1?.message}
+            </span>
           )}
         </div>
 

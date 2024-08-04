@@ -31,7 +31,7 @@ export function GlobalContextProvider({ children }) {
   }
 
   function handleSetToken({ token }: { token: string }) {
-    localStorage.setItem('user-token', JSON.stringify(token))
+    localStorage.setItem('user-token', token)
     setToken(token)
   }
 

@@ -30,6 +30,10 @@ export function CommentBox({ movieId }: { movieId: number }) {
     mutationFn: postComment,
     onSuccess: (data) => {
       const cached = queryClient.getQueryData(['comments'])
+      console.log('Cacheado:')
+      console.log(cached)
+      console.log('Comentário postado:')
+      console.log(data)
 
       const newComments = [...cached, data]
 
