@@ -9,14 +9,17 @@ import { useContext } from 'react'
 import { GlobalContext } from '@/components/globalContext.tsx'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
+import { CardContext } from '@/components/movieCard.tsx'
+import { IComment } from '@/@types/IComment.ts'
 
 const commentSchema = z.object({
   text: z.string().min(3),
 })
 
 export interface ICommentSchema extends z.infer<typeof commentSchema> {}
-export function CommentBox({ movieId }: { movieId: number }) {
+export function CommentBox() {
   const { userToken } = useContext(GlobalContext)
+  const { movie } = useContext(CardContext)
   const {
     handleSubmit,
     register,
@@ -29,7 +32,7 @@ export function CommentBox({ movieId }: { movieId: number }) {
   const { mutateAsync: postCommentMutation } = useMutation({
     mutationFn: postComment,
     onSuccess: (data) => {
-      const cached = queryClient.getQueryData(['comments'])
+      const cached = queryClient.getQueryData<IComment>(['comments'])
       console.log('Cacheado:')
       console.log(cached)
       console.log('Comentário postado:')
@@ -50,7 +53,7 @@ export function CommentBox({ movieId }: { movieId: number }) {
       if (userToken) {
         await postCommentMutation({
           token: userToken,
-          movieId,
+          movieId: movie.id,
           comment: data.text,
         })
         toast.success('Comentário postado com sucesso!')
@@ -69,7 +72,6 @@ export function CommentBox({ movieId }: { movieId: number }) {
       <Textarea
         {...register('text')}
         placeholder="type here"
-        type="text"
         className={'text-darkBlue mb-4'}
         name={'text'}
       />
