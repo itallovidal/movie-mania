@@ -15,8 +15,6 @@ export function MovieCommentList() {
     enabled: isDialogOpen,
   })
 
-  console.log(comments)
-
   return (
     <div className={'h-full rounded-md bg-darkBlue p-4'}>
       <div

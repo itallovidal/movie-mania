@@ -33,10 +33,6 @@ export function CommentBox() {
     mutationFn: postComment,
     onSuccess: (data) => {
       const cached = queryClient.getQueryData<IComment>(['comments'])
-      console.log('Cacheado:')
-      console.log(cached)
-      console.log('Comentário postado:')
-      console.log(data)
 
       const newComments = [...cached, data]
 
@@ -71,7 +67,7 @@ export function CommentBox() {
     >
       <Textarea
         {...register('text')}
-        placeholder="type here"
+        placeholder="Digite seu comentário.."
         className={'text-darkBlue mb-4'}
         name={'text'}
       />

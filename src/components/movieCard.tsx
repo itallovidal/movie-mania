@@ -24,7 +24,7 @@ export function MovieCard({ movie }: { movie: IMovie }) {
             <p className={'mt-4 min-h-[4ch] font-bold font-josefin text-2xl'}>
               {movie.title}
             </p>
-            <Stars rating={Math.round(movie.vote_average / 2)} />
+            <Stars rating={Math.round(movie.rating.average / 2)} />
           </div>
         </DialogTrigger>
         <MovieModal />

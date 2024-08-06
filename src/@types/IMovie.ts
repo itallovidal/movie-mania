@@ -1,7 +1,6 @@
 export interface IMovie {
   release_date: string
   poster_path: string
-  vote_average: number
   id: number
   title: string
   overview: string
@@ -10,4 +9,9 @@ export interface IMovie {
     name: string
   }[]
   backdrop_path: string
+  rating: {
+    user: null | number
+    average: number
+    ratingsCount: number
+  }
 }

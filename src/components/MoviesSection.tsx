@@ -25,7 +25,7 @@ export function MoviesSection({ name, id }: IMovieSectionProps) {
   if (!movies || movies.length === 0) return <></>
 
   return (
-    <div className={'max-w-grid-width m-auto '}>
+    <div className={'w-[90%] max-w-grid-width m-auto'}>
       <div className={'flex justify-between'}>
         <h1 className={'text-4xl font-josefin font-bold tracking-tight mb-4'}>
           {name}
