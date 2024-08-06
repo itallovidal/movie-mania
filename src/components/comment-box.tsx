@@ -17,6 +17,7 @@ const commentSchema = z.object({
 })
 
 export interface ICommentSchema extends z.infer<typeof commentSchema> {}
+
 export function CommentBox() {
   const { userToken } = useContext(GlobalContext)
   const { movie } = useContext(CardContext)

@@ -18,7 +18,7 @@ export function GenreMovieList() {
       <Header />
       <div className={`max-w-grid-width m-auto`}>
         <div
-          className={'-mt-8  gap-y-24 flex-wrap flex justify-between flex-row '}
+          className={'-mt-8  gap-y-24 flex-wrap flex justify-start flex-row '}
         >
           {movies.map((movie) => {
             return (
