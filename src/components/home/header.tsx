@@ -1,4 +1,4 @@
-import { SearchMovieInput } from '@/components/home/searchMovieInput.tsx'
+import { SearchMovieInput } from '@/components/home/search-movie-input.tsx'
 import { Search } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
 

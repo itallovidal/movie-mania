@@ -11,7 +11,7 @@ import { Separator } from '@/components/ui/separator.tsx'
 import { signIn } from '@/api/sign-in.ts'
 import { toast } from 'sonner'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/globalContext.tsx'
+import { GlobalContext } from '@/components/global-context.tsx'
 
 const signSchema = z.object({
   email: z.string().min(3, { message: `Mínimo de 3 caracteres.` }),

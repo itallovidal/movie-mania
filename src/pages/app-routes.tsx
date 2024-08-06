@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { SignIn } from '@/pages/signIn.tsx'
-import { AuthLayout } from '@/pages/layouts/authLayout.tsx'
+import { AuthLayout } from '@/pages/layouts/auth-layout.tsx'
 import { SignUp } from '@/pages/signUp.tsx'
 import { Home } from '@/pages/home.tsx'
 import { Profile } from '@/pages/profile.tsx'
-import { AppLayout } from '@/pages/layouts/appLayout.tsx'
-import { GlobalContextProvider } from '@/components/globalContext.tsx'
-import { GenreMovieList } from '@/pages/genreMovieList.tsx'
+import { AppLayout } from '@/pages/layouts/app-layout.tsx'
+import { GlobalContextProvider } from '@/components/global-context.tsx'
+import { GenreMovieList } from '@/pages/genre-movie-list.tsx'
 
 export function AppRoutes() {
   return (

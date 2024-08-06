@@ -1,5 +1,5 @@
 import { Header } from '@/components/home/header.tsx'
-import { MoviesSection } from '@/components/MoviesSection.tsx'
+import { MoviesSection } from '@/components/movies-section.tsx'
 import { GENRES } from '@/@types/genres.ts'
 
 export function Home() {

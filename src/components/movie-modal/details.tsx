@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { CardContext } from '@/components/movieCard.tsx'
+import { CardContext } from '@/components/movie-card.tsx'
 import { Badge } from '@/components/ui/badge.tsx'
 export function Details() {
   const { movie } = useContext(CardContext)

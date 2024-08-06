@@ -3,7 +3,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel.tsx'
-import { MovieCard } from '@/components/movieCard.tsx'
+import { MovieCard } from '@/components/movie-card.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { ChevronRight } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'

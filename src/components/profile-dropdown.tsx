@@ -7,7 +7,7 @@ import {
 import { Button } from '@/components/ui/button.tsx'
 import { Navlink } from '@/components/navlink.tsx'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/globalContext.tsx'
+import { GlobalContext } from '@/components/global-context.tsx'
 
 export function ProfileDropdown() {
   const { handleLogOut } = useContext(GlobalContext)

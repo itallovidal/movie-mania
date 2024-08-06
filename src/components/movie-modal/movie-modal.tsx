@@ -8,7 +8,7 @@ import {
 import { MovieCommentList } from '@/components/movie-modal/movie-comment-list.tsx'
 import { MovieDetails } from '@/components/movie-modal/movie-details.tsx'
 import { useContext } from 'react'
-import { CardContext } from '@/components/movieCard.tsx'
+import { CardContext } from '@/components/movie-card.tsx'
 
 export function MovieModal() {
   const { movie } = useContext(CardContext)

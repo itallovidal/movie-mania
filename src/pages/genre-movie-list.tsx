@@ -1,7 +1,7 @@
 import { Header } from '@/components/home/header.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getMoviesByGenre } from '@/api/get-movies-by-genre.ts'
-import { MovieCard } from '@/components/movieCard.tsx'
+import { MovieCard } from '@/components/movie-card.tsx'
 import { useParams } from 'react-router-dom'
 
 export function GenreMovieList() {

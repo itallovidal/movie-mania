@@ -4,10 +4,10 @@ import { Badge } from '@/components/ui/badge.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { useContext } from 'react'
 import { getProfile } from '@/api/get-profile.ts'
-import { GlobalContext } from '@/components/globalContext.tsx'
+import { GlobalContext } from '@/components/global-context.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getLists } from '@/api/get-lists.ts'
-import { MovieList } from '@/components/profile/MovieList.tsx'
+import { MovieList } from '@/components/profile/movie-list.tsx'
 
 export function Profile() {
   const { userToken } = useContext(GlobalContext)

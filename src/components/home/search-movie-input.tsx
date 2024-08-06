@@ -7,7 +7,7 @@ import {
 
 import { Lightbulb, Search } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
-import { SearchResult } from '@/components/searchResult.tsx'
+import { SearchResult } from '@/components/search-result.tsx'
 
 export function SearchMovieInput() {
   return (

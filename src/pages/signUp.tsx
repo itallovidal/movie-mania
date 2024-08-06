@@ -17,7 +17,7 @@ import { Separator } from '@/components/ui/separator.tsx'
 import { signUp } from '@/api/sign-up.ts'
 import { toast } from 'sonner'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/globalContext.tsx'
+import { GlobalContext } from '@/components/global-context.tsx'
 import { GENRES } from '@/@types/genres.ts'
 
 const signUpSchema = z

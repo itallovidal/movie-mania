@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { IComment } from '@/@types/IComment.ts'
-import { ICommentSchema } from '@/components/commentBox.tsx'
+import { ICommentSchema } from '@/components/comment-box.tsx'
 
 export const postCommentMock = http.post<never, ICommentSchema>(
   'movies/comment/*',

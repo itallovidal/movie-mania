@@ -1,9 +1,9 @@
-import { Stars } from '@/components/Stars.tsx'
+import { Stars } from '@/components/stars.tsx'
 import { DialogTrigger } from '@/components/ui/dialog.tsx'
-import { ImageCover } from '@/components/imageCover.tsx'
+import { ImageCover } from '@/components/image-cover.tsx'
 import { IMovie } from '@/@types/IMovie.ts'
 import { Dialog } from '@radix-ui/react-dialog'
-import { MovieModal } from '@/components/movie-modal/MovieModal.tsx'
+import { MovieModal } from '@/components/movie-modal/movie-modal.tsx'
 import { createContext, useState } from 'react'
 
 interface ICardContext {
