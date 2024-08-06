@@ -9,10 +9,10 @@ export function ImageCover({
 }) {
   return (
     <picture
-      className={`w-[225px] h-[360px] ${display} rounded-md overflow-hidden`}
+      className={`w-[225px] h-[360px] bg-yellow-400 ${display} rounded-md overflow-hidden`}
     >
       <img
-        className={'object-cover block w-full h-full max-w-max max-h-max'}
+        className={`${display === 'block' ? 'object-cover' : 'object-contain'} block w-full h-full`}
         src={cover ? `https://image.tmdb.org/t/p/w500${cover}` : placeholder}
         alt=""
       />

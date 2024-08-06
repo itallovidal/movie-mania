@@ -17,12 +17,12 @@ export function MovieModal() {
     <DialogContent
       title={`${movie.title} Details`}
       className={
-        'bg-darkBlue min-w-grid-width p-0 overflow-hidden border-0 outline-0 max-h-[800px]'
+        'bg-transparent min-w-grid-width p-0 overflow-hidden border-0 outline-0 max-h-[800px]'
       }
     >
-      <DialogTitle>`${movie.title} Details`</DialogTitle>
+      <DialogTitle className={'hidden'}>`${movie.title} Details`</DialogTitle>
       <Tabs defaultValue="details" className="w-full min-h-[70vh] ">
-        <TabsList className={'w-full'}>
+        <TabsList className={'w-full bg-darkBlue'}>
           <TabsTrigger value="details">Detalhes do Filme</TabsTrigger>
           <TabsTrigger value="commentList">Lista de Comentários</TabsTrigger>
         </TabsList>
