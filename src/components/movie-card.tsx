@@ -29,8 +29,6 @@ export function MovieCard({ movie }: { movie: IMovie }) {
     enabled: !!userToken,
   })
 
-  console.log(rating)
-
   return (
     <CardContext.Provider value={{ isDialogOpen, movie, rating }}>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

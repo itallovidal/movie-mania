@@ -22,6 +22,8 @@ export function MoviesSection({ name, id }: IMovieSectionProps) {
     staleTime: Infinity,
   })
 
+  console.log(movies)
+
   if (!movies || movies.length === 0) return <></>
 
   return (

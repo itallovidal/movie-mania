@@ -14,4 +14,7 @@ export interface IMovie {
     average: number
     ratingsCount: number
   }
+  lists: {
+    id: number
+  }[]
 }

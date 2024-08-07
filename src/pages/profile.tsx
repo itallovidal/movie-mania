@@ -27,8 +27,6 @@ export function Profile() {
     enabled: !!userToken,
   })
 
-  console.log(lists)
-
   return (
     <main
       className={`m-auto gap-4 relative grid grid-cols-[200px_944px] justify-center`}

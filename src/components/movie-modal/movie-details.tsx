@@ -4,7 +4,7 @@ import { ImageCover } from '@/components/image-cover.tsx'
 import { CardContext } from '@/components/movie-card.tsx'
 import { RateMovie } from '@/components/movie-modal/rate-movie.tsx'
 import { Details } from '@/components/movie-modal/details.tsx'
-import { AddToPlaylist } from '@/components/movie-modal/add-to-playlist.tsx'
+import { AddToList } from '@/components/movie-modal/add-to-list.tsx'
 import { Stars } from '@/components/stars.tsx'
 
 export function MovieDetails() {
@@ -42,7 +42,7 @@ export function MovieDetails() {
             ) : (
               <RateMovie />
             )}
-            <AddToPlaylist />
+            <AddToList />
           </div>
         </div>
       </div>

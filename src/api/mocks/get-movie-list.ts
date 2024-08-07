@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { IMovieList } from '@/@types/IMovieList.ts'
 
-export const getMovieList = http.get('/lists/*', async ({ params }) => {
+export const getMovieList = http.get('/lists/1041513', async ({ params }) => {
   const id = params[0]
 
   console.log('list id:')

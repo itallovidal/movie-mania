@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { IList } from '@/@types/IList.ts'
 
-export const getListsMock = http.get('/lists', async ({ request }) => {
+export const getListsMock = http.get('/lists/userId', async ({ request }) => {
   const token = request.headers.get('Authorization')
 
   if (!token) {
