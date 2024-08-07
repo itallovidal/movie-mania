@@ -18,6 +18,7 @@ import { Check } from 'lucide-react'
 import { addMovieToList } from '@/api/add-movie-to-list.ts'
 import { toast } from 'sonner'
 import { queryClient } from '@/lib/reactQuery.ts'
+import { removeMovieFromList } from '@/api/remove-movie-from-list.ts'
 const listSchema = z.object({
   name: z.string().min(3),
   id: z.number().or(z.null()).default(null),
@@ -69,6 +70,20 @@ export function AddToList() {
     },
   })
 
+  const { mutateAsync: removeMovieFromListMutation } = useMutation({
+    mutationFn: removeMovieFromList,
+    onSuccess: (data) => {
+      // const cached = queryClient.getQueryData(['movie-lists'])
+      // const createdList = data.listAdded as { id: number; name: string }
+      // const newList = [...cached, createdList]
+      // queryClient.setQueryData(['movie-lists'], newList)
+
+      movie.lists = movie.lists.filter(
+        (list) => list.id !== data.listRemoved.id,
+      )
+    },
+  })
+
   async function handleAddToPlaylist(list: IListSchema) {
     try {
       await addMovieToListMutation({
@@ -82,9 +97,22 @@ export function AddToList() {
     }
   }
 
-  function selectList(list: IListSchema) {
-    setValue('name', list.name)
-    setValue('id', list.id)
+  async function selectList(list: IListSchema, action: 'add' | 'remove') {
+    if (action === 'add') {
+      setValue('name', list.name)
+      setValue('id', list.id)
+      return
+    }
+
+    if (action === 'remove') {
+      await removeMovieFromListMutation({
+        list,
+        token: userToken,
+        movieId: movie.id,
+      })
+
+      toast.success('Filme Removido da lista com sucesso!')
+    }
   }
 
   return (
@@ -110,11 +138,19 @@ export function AddToList() {
 
             {lists &&
               lists?.map((list) => {
+                const isMovieInTheList = movie.lists.some(
+                  (userList) => userList.id === list.id,
+                )
+                console.log('o filme está na lista?')
+                console.log(isMovieInTheList)
+
                 return (
                   <button
                     disabled={isPending}
-                    type={'submit'}
-                    onClick={() => selectList(list)}
+                    // type={'submit'}
+                    onClick={() =>
+                      selectList(list, isMovieInTheList ? 'remove' : 'add')
+                    }
                     key={list.id}
                     className={
                       'w-full disabled:cursor-not-allowed disabled:opacity-15 cursor-pointer flex justify-between p-2 hover:opacity-55  h-[50px]'
@@ -122,10 +158,8 @@ export function AddToList() {
                   >
                     <span>{list.name}</span>
 
-                    {movie.lists.some((userList) => userList.id === list.id) ? (
+                    {isMovieInTheList && (
                       <Check className={'p-1 rounded bg-green-500'} />
-                    ) : (
-                      <></>
                     )}
                   </button>
                 )
