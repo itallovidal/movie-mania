@@ -20,7 +20,7 @@ import { toast } from 'sonner'
 import { queryClient } from '@/lib/reactQuery.ts'
 const listSchema = z.object({
   name: z.string().min(3),
-  id: z.number().default(-1),
+  id: z.number().or(z.null()).default(null),
 })
 
 export interface IListSchema extends z.infer<typeof listSchema> {}
@@ -48,7 +48,15 @@ export function AddToList() {
   const { mutateAsync: addMovieToListMutation, isPending } = useMutation({
     mutationFn: addMovieToList,
     onSuccess: (data) => {
-      if (lists.some((list) => list.id !== data.listAdded.id)) {
+      console.log(
+        lists.some((list) => {
+          console.log(list.id)
+          console.log(data.listAdded.id)
+          return list.id === data.listAdded.id
+        }),
+      )
+
+      if (!lists.some((list) => list.id === data.listAdded.id)) {
         const cached = queryClient.getQueryData(['movie-lists'])
         const createdList = data.listAdded as { id: number; name: string }
         const newList = [...cached, createdList]

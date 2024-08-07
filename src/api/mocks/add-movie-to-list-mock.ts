@@ -23,7 +23,7 @@ export const addMovieToListMock = http.post<never, IAddMovieToListRequest>(
     return new HttpResponse(
       JSON.stringify({
         listAdded: {
-          id: 10,
+          id: payload.list.id === null ? 3 : payload.list.id,
           name: payload.list.name,
         },
       }),
