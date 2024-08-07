@@ -23,7 +23,7 @@ export function RateMovie() {
       }),
     onSuccess: (data) => {
       console.log(data.created)
-      queryClient.setQueryData(['movieRating'], data.created)
+      queryClient.setQueryData(['movieRating', movie.id], data.created)
     },
   })
 

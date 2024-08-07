@@ -22,7 +22,7 @@ export function MovieCard({ movie }: { movie: IMovie }) {
   const { userToken } = useContext(GlobalContext)
 
   const { data: rating } = useQuery({
-    queryKey: ['movieRating'],
+    queryKey: ['movieRating', movie.id],
     queryFn: () => {
       if (userToken) return getMovieRatingById(userToken, movie.id)
     },
