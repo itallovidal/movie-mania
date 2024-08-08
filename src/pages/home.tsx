@@ -2,6 +2,7 @@ import { Header } from '@/components/home/header.tsx'
 import { useContext, useMemo } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 import { SuggestionSection } from '@/components/home/suggestion-section.tsx'
+import { CategorySelection } from '@/components/home/category-selection.tsx'
 
 export function Home() {
   const { genreList } = useContext(MovieContext)
@@ -25,6 +26,7 @@ export function Home() {
   return (
     <>
       <Header />
+      <CategorySelection genres={genreList} />
       {randomGenres &&
         randomGenres.map((genre) => (
           <SuggestionSection key={genre.id} genre={genre} />
