@@ -1,10 +1,9 @@
 import { http, HttpResponse } from 'msw'
-import { IMovieList } from '@/@types/IMovieList.ts'
 
 export const getGenres = http.get('/movie/genres', async () => {
-  return HttpResponse.json<IMovieList>(
+  return HttpResponse.json<IGetGenreListResponse>(
     {
-      genres: [
+      genreList: [
         {
           id: 28,
           name: 'Ação',

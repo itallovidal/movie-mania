@@ -18,7 +18,6 @@ import { signUp } from '@/api/sign-up.ts'
 import { toast } from 'sonner'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
-import { GENRES } from '@/@types/genres.ts'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 
 const signUpSchema = z

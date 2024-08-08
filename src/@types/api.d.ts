@@ -1,0 +1,3 @@
+interface IGetGenreListResponse {
+  genreList: IGenre[]
+}
