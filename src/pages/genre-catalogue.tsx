@@ -4,26 +4,23 @@ import { getMoviesByGenre } from '@/api/movie/get-movies-by-genre.ts'
 import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 import { useParams } from 'react-router-dom'
 
-export function GenreMovieList() {
+export function GenreCatalogue() {
   const { id } = useParams() as { id: string }
-  const { data: movies } = useQuery({
+  const { data: catalogue } = useQuery({
     queryKey: [id],
     queryFn: () => getMoviesByGenre(Number(id)),
   })
 
-  if (!movies) return <></>
+  if (!catalogue) return <></>
 
   return (
     <>
-      <Header />
       <div className={`max-w-grid-width m-auto`}>
-        <div
-          className={'-mt-8  gap-y-24 flex-wrap flex justify-start flex-row '}
-        >
-          {movies.map((movie) => {
+        <div className={'gap-y-24 flex-wrap flex justify-start flex-row '}>
+          {catalogue.movies.map((movie) => {
             return (
               <div key={movie.id} className={'w-1/4'}>
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie} sectionId={0} />
               </div>
             )
           })}

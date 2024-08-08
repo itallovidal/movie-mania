@@ -17,7 +17,7 @@ function CategoryCard({ genre }: ICategoryCardProps) {
         'cursor-pointer bg-home-background bg-center h-[100px] w-[calc(33%-theme(gap.1))] p-2 rounded-md grid place-content-center'
       }
     >
-      <Link className={'font-josefin'} to={`/movies/${genre.id}`}>
+      <Link className={'font-josefin'} to={`/movie/${genre.id}`}>
         {genre.name}
       </Link>
     </div>
@@ -40,7 +40,7 @@ function CategorySelectionContent({
             return <></>
           }
 
-          return <CategoryCard genre={genre} />
+          return <CategoryCard key={genre.id} genre={genre} />
         })}
     </div>
   )
@@ -52,9 +52,7 @@ export function CategorySelection({ genres }: ICategorySelectionProps) {
   return (
     <div className={'w-[90%] max-w-grid-width mx-auto flex flex-col mb-24'}>
       <MovieSectionTitle>Categorias</MovieSectionTitle>
-
       <CategorySelectionContent genres={genres} isOpen={isOpen} />
-
       <Button
         onClick={() => setIsOpen((prev) => !prev)}
         className={'mx-auto mt-4'}

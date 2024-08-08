@@ -6,7 +6,7 @@ import { Home } from '@/pages/home.tsx'
 import { Profile } from '@/pages/profile.tsx'
 import { AppLayout } from '@/pages/layouts/app-layout.tsx'
 import { GlobalContextProvider } from '@/contexts/global-context.tsx'
-import { GenreMovieList } from '@/pages/genre-movie-list.tsx'
+import { GenreCatalogue } from '@/pages/genre-catalogue.tsx'
 import { MovieContextProvider } from '@/contexts/movie-context.tsx'
 
 export function AppRoutes() {
@@ -17,7 +17,7 @@ export function AppRoutes() {
           <Routes>
             <Route path={'/'} element={<AppLayout />}>
               <Route path={'/'} element={<Home />} />
-              <Route path={'/movie/:id'} element={<GenreMovieList />} />
+              <Route path={'/movie/:id'} element={<GenreCatalogue />} />
               <Route path={'/profile'} element={<Profile />} />
             </Route>
 

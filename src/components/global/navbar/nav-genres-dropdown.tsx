@@ -22,7 +22,7 @@ export function NavGenresDropdown() {
         {genreList &&
           genreList.map((genre) => {
             return (
-              <Navlink key={genre.id} to={`/movies/${genre.id}`}>
+              <Navlink key={genre.id} to={`/movie/${genre.id}`}>
                 {genre.name}
               </Navlink>
             )

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export function MovieSectionSeeMore({ id }: { id: number }) {
   return (
-    <Link to={`/movies/${id}`}>
+    <Link to={`/movie/${id}`}>
       <Button variant={'ghost'}>
         Ver mais <ChevronRight />
       </Button>
