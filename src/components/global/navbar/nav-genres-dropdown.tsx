@@ -5,7 +5,6 @@ import {
 } from '@/components/ui/dropdown-menu.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { Navlink } from '@/components/navlink.tsx'
-import { GENRES } from '@/@types/genres.ts'
 import { useContext } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 
