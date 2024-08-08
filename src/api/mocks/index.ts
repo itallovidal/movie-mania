@@ -13,6 +13,7 @@ import { getMovieRatingByIdMock } from '@/api/mocks/get-movie-rating-by-id-mock.
 import { getListsByMovieMock } from '@/api/mocks/get-lists-by-movie-mock.ts'
 import { addMovieToListMock } from '@/api/mocks/add-movie-to-list-mock.ts'
 import { removeMovieFromListMock } from '@/api/mocks/remove-movie-from-list-mock.ts'
+import { getGenres } from '@/api/mocks/movie/get-genres.ts'
 
 export const worker = setupWorker(
   signInMock,
@@ -28,6 +29,7 @@ export const worker = setupWorker(
   getListsByMovieMock,
   addMovieToListMock,
   removeMovieFromListMock,
+  getGenres,
 )
 
 export async function setupMSW() {
