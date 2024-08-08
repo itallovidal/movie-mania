@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getMovieComments } from '@/api/get-movie-comments.ts'
-import { PostedComment } from '@/components/posted-comment.tsx'
-import { CommentBox } from '@/components/comment-box.tsx'
-import { GlobalContext } from '@/components/global-context.tsx'
-import { CardContext } from '@/components/movie-card.tsx'
+import { PostedComment } from '@/components/movie-modal/movie-comment-list/posted-comment.tsx'
+import { CommentBox } from '@/components/movie-modal/movie-comment-list/comment-box.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
+import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
 export function MovieCommentList() {
   const { userToken } = useContext(GlobalContext)

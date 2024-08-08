@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from '@/components/navbar.tsx'
 import { useContext, useEffect } from 'react'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 
 export function AppLayout() {
   const { pathname } = useLocation()

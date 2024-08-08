@@ -5,8 +5,8 @@ import { useContext, useState } from 'react'
 import { postRating } from '@/api/rate-movie.ts'
 import { toast } from 'sonner'
 import { useMutation } from '@tanstack/react-query'
-import { CardContext } from '@/components/movie-card.tsx'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { CardContext } from '@/components/movie-card/movie-card.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { queryClient } from '@/lib/reactQuery.ts'
 
 export function RateMovie() {
@@ -22,7 +22,6 @@ export function RateMovie() {
         rating,
       }),
     onSuccess: (data) => {
-      console.log(data.created)
       queryClient.setQueryData(['movieRating', movie.id], data.created)
     },
   })

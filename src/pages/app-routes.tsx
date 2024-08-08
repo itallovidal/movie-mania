@@ -5,7 +5,7 @@ import { SignUp } from '@/pages/signUp.tsx'
 import { Home } from '@/pages/home.tsx'
 import { Profile } from '@/pages/profile.tsx'
 import { AppLayout } from '@/pages/layouts/app-layout.tsx'
-import { GlobalContextProvider } from '@/components/global-context.tsx'
+import { GlobalContextProvider } from '@/contexts/global-context.tsx'
 import { GenreMovieList } from '@/pages/genre-movie-list.tsx'
 
 export function AppRoutes() {

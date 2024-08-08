@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { useContext } from 'react'
 import { getProfile } from '@/api/get-profile.ts'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getLists } from '@/api/get-lists.ts'
 import { MovieList } from '@/components/profile/movie-list.tsx'
@@ -27,6 +27,8 @@ export function Profile() {
     enabled: !!userToken,
   })
 
+  if (!lists) return <></>
+
   return (
     <main
       className={`m-auto gap-4 relative grid grid-cols-[200px_944px] justify-center`}
@@ -47,7 +49,7 @@ export function Profile() {
       )}
 
       {lists && (
-        <div className={'col-start-2  flex flex-col gap-12'}>
+        <div className={'col-start-2 flex flex-col gap-12'}>
           {lists?.map((list) => {
             return <MovieList key={list.id} id={list.id} name={list.name} />
           })}

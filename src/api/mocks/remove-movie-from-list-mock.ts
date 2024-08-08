@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { IListSchema } from '@/components/movie-modal/add-to-list.tsx'
+import { IListSchema } from '@/components/movie-modal/movie-details/add-to-list.tsx'
 
 interface IRemoveMovieFromListRequest {
   list: IListSchema
@@ -13,7 +13,6 @@ export const removeMovieFromListMock = http.post<
   const token = request.headers.get('Authorization')
   const payload = await request.json()
 
-  console.log(payload)
 
   if (!token) {
     return new HttpResponse('Token inválido ou inexistente.', {

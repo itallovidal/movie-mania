@@ -1,13 +1,12 @@
 import { http, HttpResponse } from 'msw'
 import { IComment } from '@/@types/IComment.ts'
-import { ICommentSchema } from '@/components/comment-box.tsx'
+import { ICommentSchema } from '@/components/movie-modal/movie-comment-list/comment-box.tsx'
 
 export const postCommentMock = http.post<never, ICommentSchema>(
   'movies/comment/*',
   async ({ request }) => {
     const { text } = await request.json()
-    console.log('Comentário:')
-    console.log(text)
+
     const token = request.headers.get('Authorization')
 
     if (!token) {

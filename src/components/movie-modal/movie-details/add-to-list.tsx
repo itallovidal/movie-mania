@@ -11,14 +11,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getListsByMovie } from '@/api/get-lists-by-movie.ts'
 import { useContext } from 'react'
-import { CardContext } from '@/components/movie-card.tsx'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { CardContext } from '@/components/movie-card/movie-card.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { Check } from 'lucide-react'
 
 import { addMovieToList } from '@/api/add-movie-to-list.ts'
 import { toast } from 'sonner'
 import { queryClient } from '@/lib/reactQuery.ts'
 import { removeMovieFromList } from '@/api/remove-movie-from-list.ts'
+import { GENRES } from '@/@types/genres.ts'
+import { IMovie } from '@/@types/IMovie.ts'
 const listSchema = z.object({
   name: z.string().min(3),
   id: z.number().or(z.null()).default(null),
@@ -27,8 +29,11 @@ const listSchema = z.object({
 export interface IListSchema extends z.infer<typeof listSchema> {}
 
 export function AddToList() {
-  const { movie } = useContext(CardContext)
+  const { movie, sectionId } = useContext(CardContext)
   const { userToken } = useContext(GlobalContext)
+
+  console.log('filme:=>')
+  console.log(movie)
 
   const {
     handleSubmit,
@@ -49,37 +54,73 @@ export function AddToList() {
   const { mutateAsync: addMovieToListMutation, isPending } = useMutation({
     mutationFn: addMovieToList,
     onSuccess: (data) => {
-      console.log(
-        lists.some((list) => {
-          console.log(list.id)
-          console.log(data.listAdded.id)
-          return list.id === data.listAdded.id
-        }),
-      )
+      if (lists) {
+        console.log('Listas Salvas:')
+        console.log(lists)
+        console.log('Lista adicionada:')
+        console.log(data.listAdded)
 
-      if (!lists.some((list) => list.id === data.listAdded.id)) {
-        const cached = queryClient.getQueryData(['movie-lists'])
-        const createdList = data.listAdded as { id: number; name: string }
-        const newList = [...cached, createdList]
-        queryClient.setQueryData(['movie-lists'], newList)
+        if (!lists.some((list) => list.id === data.listAdded.id)) {
+          const cached = queryClient.getQueryData(['movie-lists'])
+
+          const createdList = data.listAdded as { id: number; name: string }
+          const newList = [...cached, createdList]
+          queryClient.setQueryData(['movie-lists'], newList)
+        }
+
+        const actualSection = GENRES.find((genre) => genre.id === sectionId)
+
+        const moviesCached = queryClient.getQueryData([
+          actualSection?.name,
+          actualSection?.id,
+        ]) as IMovie[]
+
+        const updatedMovies = moviesCached.map((movieCached) => {
+          if (movieCached.id === movie.id) {
+            movie.lists.push({
+              id: data.listAdded.id,
+            })
+          }
+
+          return movieCached
+        })
+
+        queryClient.setQueryData(
+          [actualSection?.name, actualSection?.id],
+          updatedMovies,
+        )
       }
-
-      movie.lists.push({
-        id: data.listAdded.id,
-      })
     },
   })
 
   const { mutateAsync: removeMovieFromListMutation } = useMutation({
     mutationFn: removeMovieFromList,
     onSuccess: (data) => {
-      // const cached = queryClient.getQueryData(['movie-lists'])
-      // const createdList = data.listAdded as { id: number; name: string }
-      // const newList = [...cached, createdList]
-      // queryClient.setQueryData(['movie-lists'], newList)
+      const actualSection = GENRES.find((genre) => genre.id === sectionId)
 
-      movie.lists = movie.lists.filter(
-        (list) => list.id !== data.listRemoved.id,
+      const moviesCached = queryClient.getQueryData([
+        actualSection?.name,
+        actualSection?.id,
+      ]) as IMovie[]
+
+      const updatedMovies = moviesCached.map((movieCached) => {
+        if (movieCached.id === movie.id) {
+          const lists = movie.lists.filter(
+            (list) => list.id !== data.listRemoved.id,
+          )
+
+          return {
+            ...movieCached,
+            lists,
+          }
+        }
+
+        return movieCached
+      })
+
+      queryClient.setQueryData(
+        [actualSection?.name, actualSection?.id],
+        updatedMovies,
       )
     },
   })
@@ -98,13 +139,13 @@ export function AddToList() {
   }
 
   async function selectList(list: IListSchema, action: 'add' | 'remove') {
+    console.log(action)
+
     if (action === 'add') {
       setValue('name', list.name)
       setValue('id', list.id)
-      return
-    }
-
-    if (action === 'remove') {
+    } else if (action === 'remove') {
+      console.log('removendo..')
       await removeMovieFromListMutation({
         list,
         token: userToken,
@@ -141,13 +182,10 @@ export function AddToList() {
                 const isMovieInTheList = movie.lists.some(
                   (userList) => userList.id === list.id,
                 )
-                console.log('o filme está na lista?')
-                console.log(isMovieInTheList)
 
                 return (
                   <button
                     disabled={isPending}
-                    // type={'submit'}
                     onClick={() =>
                       selectList(list, isMovieInTheList ? 'remove' : 'add')
                     }

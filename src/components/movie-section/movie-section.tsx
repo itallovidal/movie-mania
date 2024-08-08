@@ -22,7 +22,7 @@ export function MovieSection({ section: { name, id } }: ISectionProps) {
   return (
     <div className={'w-[90%] max-w-grid-width m-auto'}>
       <MovieSectionHeader data={{ name, id }} />
-      <MovieSectionCarrousel movies={movies} />
+      <MovieSectionCarrousel movies={movies} sectionId={id} />
     </div>
   )
 }

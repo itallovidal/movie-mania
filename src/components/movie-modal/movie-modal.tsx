@@ -5,10 +5,10 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs.tsx'
-import { MovieCommentList } from '@/components/movie-modal/movie-comment-list.tsx'
-import { MovieDetails } from '@/components/movie-modal/movie-details.tsx'
+import { MovieCommentList } from '@/components/movie-modal/movie-comment-list/movie-comment-list.tsx'
+import { MovieDetails } from '@/components/movie-modal/movie-details/movie-details.tsx'
 import { useContext } from 'react'
-import { CardContext } from '@/components/movie-card.tsx'
+import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
 export function MovieModal() {
   const { movie } = useContext(CardContext)

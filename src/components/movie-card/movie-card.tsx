@@ -6,18 +6,25 @@ import { Dialog } from '@radix-ui/react-dialog'
 import { MovieModal } from '@/components/movie-modal/movie-modal.tsx'
 import { createContext, useContext, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { getMovieRatingById } from '@/api/get-movie-rating-by-id.ts'
+import { CardContent } from '@/components/movie-card/movie-card-content.tsx'
 
 interface ICardContext {
   isDialogOpen: boolean
   movie: IMovie
   rating: IRating
+  sectionId: number
 }
 export const CardContext = createContext({} as ICardContext)
 
-export function MovieCard({ movie }: { movie: IMovie }) {
+export function MovieCard({
+  movie,
+  sectionId,
+}: {
+  movie: IMovie
+  sectionId: number
+}) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { userToken } = useContext(GlobalContext)
 
@@ -30,16 +37,10 @@ export function MovieCard({ movie }: { movie: IMovie }) {
   })
 
   return (
-    <CardContext.Provider value={{ isDialogOpen, movie, rating }}>
+    <CardContext.Provider value={{ isDialogOpen, movie, rating, sectionId }}>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogTrigger asChild>
-          <div>
-            <ImageCover cover={movie.poster_path} />
-            <p className={'mt-4 min-h-[4ch] font-bold font-josefin text-2xl'}>
-              {movie.title}
-            </p>
-            <Stars rating={Math.round(movie.rating.average / 2)} />
-          </div>
+        <DialogTrigger>
+          <CardContent movie={movie} />
         </DialogTrigger>
         <MovieModal />
       </Dialog>

@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios.config.ts'
 import { IList } from '@/@types/IList.ts'
-import { IListSchema } from '@/components/movie-modal/add-to-list.tsx'
+import { IListSchema } from '@/components/movie-modal/movie-details/add-to-list.tsx'
 
 interface IRemoveMovieFromList {
   list: IListSchema

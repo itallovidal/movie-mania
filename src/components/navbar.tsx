@@ -1,7 +1,7 @@
 import { Navlink } from '@/components/navlink.tsx'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { GenresDropdown } from '@/components/genres-dropdown.tsx'
 import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
 

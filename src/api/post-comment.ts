@@ -12,7 +12,6 @@ export async function postComment({
   token,
   comment,
 }: IPostComment): Promise<IComment> {
-  console.log(token)
 
   const response = await api.post(
     `movies/comment/${movieId}`,

@@ -4,8 +4,6 @@ import { IMovieList } from '@/@types/IMovieList.ts'
 export const getMovieList = http.get('/lists/1041513', async ({ params }) => {
   const id = params[0]
 
-  console.log('list id:')
-  console.log(id)
 
   if (!id) {
     return new HttpResponse('ID não fornecido', {

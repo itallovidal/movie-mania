@@ -5,7 +5,6 @@ export async function signIn(data: ISignInSchema) {
   const response = await api.post('users/login', data)
 
   if (response.status === 404) {
-    console.log(response.data)
     throw new Error(response.data.description)
   }
 

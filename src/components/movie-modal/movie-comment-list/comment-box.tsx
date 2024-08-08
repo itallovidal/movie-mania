@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { postComment } from '@/api/post-comment.ts'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
-import { CardContext } from '@/components/movie-card.tsx'
+import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { IComment } from '@/@types/IComment.ts'
 
 const commentSchema = z.object({

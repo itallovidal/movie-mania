@@ -3,11 +3,11 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel.tsx'
-import { MovieCard } from '@/components/movie-card.tsx'
+import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getMovieList } from '@/api/get-movie-list.ts'
 import { useContext } from 'react'
-import { GlobalContext } from '@/components/global-context.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 
 interface IMovieListProps {
   id: number

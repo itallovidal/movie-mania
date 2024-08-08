@@ -3,11 +3,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel.tsx'
-import { MovieCard } from '@/components/movie-card.tsx'
+import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 import { IMovie } from '@/@types/IMovie.ts'
 
 interface ISectionCarrousel {
   movies: IMovie[]
+  sectionId: number
 }
 
 const carrouselConfig = {
@@ -15,13 +16,16 @@ const carrouselConfig = {
   loop: true,
 }
 
-export function MovieSectionCarrousel({ movies }: ISectionCarrousel) {
+export function MovieSectionCarrousel({
+  movies,
+  sectionId,
+}: ISectionCarrousel) {
   return (
     <Carousel opts={carrouselConfig}>
       <CarouselContent>
-        {movies.map((movie) => (
-          <CarouselItem key={movie.id} className="basis-1/4">
-            <MovieCard movie={movie} />
+        {movies.map((movie, index) => (
+          <CarouselItem key={index} className="basis-1/4">
+            <MovieCard movie={movie} sectionId={sectionId} />
           </CarouselItem>
         ))}
       </CarouselContent>
