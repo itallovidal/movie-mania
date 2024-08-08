@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import { Navbar } from '@/components/navbar.tsx'
+import { Navbar } from '@/components/global/navbar/navbar.tsx'
 import { useContext, useEffect } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { MovieContextProvider } from '@/contexts/movie-context.tsx'

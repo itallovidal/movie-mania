@@ -6,8 +6,12 @@ import {
 import { Button } from '@/components/ui/button.tsx'
 import { Navlink } from '@/components/navlink.tsx'
 import { GENRES } from '@/@types/genres.ts'
+import { useContext } from 'react'
+import { MovieContext } from '@/contexts/movie-context.tsx'
 
-export function GenresDropdown() {
+export function NavGenresDropdown() {
+  const { genreList } = useContext(MovieContext)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -15,16 +19,15 @@ export function GenresDropdown() {
           Categorias
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className={'bg-semiDarkBlue  border-0 flex-col flex'}
-      >
-        {GENRES.map((genre) => {
-          return (
-            <Navlink key={genre.id} to={`/movies/${genre.id}`}>
-              {genre.name}
-            </Navlink>
-          )
-        })}
+      <DropdownMenuContent className={'bg-semiDarkBlue border-0 flex-col flex'}>
+        {genreList &&
+          genreList.map((genre) => {
+            return (
+              <Navlink key={genre.id} to={`/movies/${genre.id}`}>
+                {genre.name}
+              </Navlink>
+            )
+          })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

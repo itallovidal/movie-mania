@@ -2,7 +2,7 @@ import { Navlink } from '@/components/navlink.tsx'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
-import { GenresDropdown } from '@/components/genres-dropdown.tsx'
+import { NavGenresDropdown } from '@/components/global/navbar/nav-genres-dropdown.tsx'
 import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
 
 export function Navbar() {
@@ -20,7 +20,7 @@ export function Navbar() {
         <nav className={'space-x-2'}>
           <Navlink to={'/'}>Todos</Navlink>
           <Navlink to={'/#foryou'}>Para você</Navlink>
-          <GenresDropdown />
+          <NavGenresDropdown />
           {userToken && <ProfileDropdown />}
           {!userToken && <Navlink to={'/sign-in'}>Entrar</Navlink>}
           {!userToken && <Navlink to={'/sign-up'}>Criar conta</Navlink>}
