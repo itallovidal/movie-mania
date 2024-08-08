@@ -19,6 +19,7 @@ import { toast } from 'sonner'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { GENRES } from '@/@types/genres.ts'
+import { MovieContext } from '@/contexts/movie-context.tsx'
 
 const signUpSchema = z
   .object({
@@ -40,6 +41,7 @@ export interface ISignUpSchema extends z.infer<typeof signUpSchema> {}
 
 export function SignUp() {
   const { handleNavigate } = useContext(GlobalContext)
+  const { genreList } = useContext(MovieContext)
   const {
     handleSubmit,
     register,
@@ -49,13 +51,10 @@ export function SignUp() {
     resolver: zodResolver(signUpSchema),
   })
 
-  console.log(errors)
-
   async function handleSignIn(data: ISignUpSchema) {
     try {
       await signUp(data)
       toast.success('Bem vindo!')
-
       setTimeout(() => {
         toast.success('Faça o login com sua nova conta!')
         handleNavigate('/sign-in')
@@ -122,16 +121,17 @@ export function SignUp() {
                     <SelectValue placeholder="Primeiro Gênero Favorito" />
                   </SelectTrigger>
                   <SelectContent>
-                    {GENRES.map((genre) => {
-                      return (
-                        <SelectItem
-                          className={'cursor-pointer'}
-                          value={genre.id.toString()}
-                        >
-                          {genre.name}
-                        </SelectItem>
-                      )
-                    })}
+                    {genreList &&
+                      genreList.map((genre) => {
+                        return (
+                          <SelectItem
+                            className={'cursor-pointer'}
+                            value={genre.id.toString()}
+                          >
+                            {genre.name}
+                          </SelectItem>
+                        )
+                      })}
                   </SelectContent>
                 </Select>
               )
@@ -148,16 +148,17 @@ export function SignUp() {
                     <SelectValue placeholder="Segundo Gênero Favorito" />
                   </SelectTrigger>
                   <SelectContent>
-                    {GENRES.map((genre) => {
-                      return (
-                        <SelectItem
-                          className={'cursor-pointer'}
-                          value={genre.id.toString()}
-                        >
-                          {genre.name}
-                        </SelectItem>
-                      )
-                    })}
+                    {genreList &&
+                      genreList.map((genre) => {
+                        return (
+                          <SelectItem
+                            className={'cursor-pointer'}
+                            value={genre.id.toString()}
+                          >
+                            {genre.name}
+                          </SelectItem>
+                        )
+                      })}
                   </SelectContent>
                 </Select>
               )

@@ -6,7 +6,7 @@ interface IMovieContextProps {
   genreList: IGenre[] | undefined
 }
 
-const MovieContext = createContext({} as IMovieContextProps)
+export const MovieContext = createContext({} as IMovieContextProps)
 
 export function MovieContextProvider({ children }) {
   const { data: genreList } = useQuery({
@@ -14,5 +14,9 @@ export function MovieContextProvider({ children }) {
     queryFn: getGenres,
   })
 
-  return <MovieContext.Provider value={{}}>{children}</MovieContext.Provider>
+  return (
+    <MovieContext.Provider value={{ genreList }}>
+      {children}
+    </MovieContext.Provider>
+  )
 }
