@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/select.tsx'
 import { Link } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
-import { signUp } from '@/api/sign-up.ts'
+import { signUp } from '@/api/user/sign-up.ts'
 import { toast } from 'sonner'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'

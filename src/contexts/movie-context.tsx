@@ -14,8 +14,6 @@ export function MovieContextProvider({ children }) {
     queryFn: getGenres,
   })
 
-  console.log(genreListResponse?.genreList)
-
   return (
     <MovieContext.Provider
       value={{
