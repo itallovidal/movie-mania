@@ -35,3 +35,7 @@ interface IRateMovieResponse {
 interface IGetUserRatingByMovieIdResponse {
   rating: IRating
 }
+
+interface IGetUserProfileResponse {
+  profile: IProfile
+}

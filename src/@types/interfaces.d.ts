@@ -43,3 +43,8 @@ interface IRating {
   movieId: number
   rating: number | null
 }
+
+interface IProfile {
+  name: string
+  favoriteGenres: string[]
+}

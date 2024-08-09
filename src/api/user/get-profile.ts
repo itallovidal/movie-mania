@@ -1,8 +1,7 @@
 import { api } from '@/lib/axios.config.ts'
-import { IProfile } from '@/@types/IProfile.ts'
 
-export async function getProfile(token: string): Promise<IProfile> {
-  const response = await api.get('users/profile', {
+export async function getProfile(token: string): Promise<IGetUserProfileResponse> {
+  const response = await api.get('user/profile', {
     headers: {
       Authorization: `Bearer ${token}`,
     },

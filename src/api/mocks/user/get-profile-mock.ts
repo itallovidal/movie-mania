@@ -1,7 +1,6 @@
 import { http, HttpResponse } from 'msw'
-import { IProfile } from '@/@types/IProfile.ts'
 
-export const getProfileMock = http.get('users/profile', async ({ request }) => {
+export const getProfileMock = http.get('user/profile', async ({ request }) => {
   const token = request.headers.get('Authorization')
 
   if (!token) {
@@ -10,10 +9,12 @@ export const getProfileMock = http.get('users/profile', async ({ request }) => {
     })
   }
 
-  return HttpResponse.json<IProfile>(
+  return HttpResponse.json<IGetUserProfileResponse>(
     {
-      name: 'Itallo Vidal',
-      favoriteGenres: ['Ação', 'Aventura'],
+      profile: {
+        name: 'Itallo Vidal',
+        favoriteGenres: ['Ação', 'Aventura'],
+      },
     },
     {
       status: 200,
