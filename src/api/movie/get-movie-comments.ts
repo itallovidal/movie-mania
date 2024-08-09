@@ -1,7 +1,8 @@
 import { api } from '@/lib/axios.config.ts'
-import { IComment } from '@/@types/IComment.ts'
 
-export async function getMovieComments(movieId: number): Promise<IComment[]> {
+export async function getMovieComments(
+  movieId: number,
+): Promise<IGetMovieCommentsResponse> {
   const response = await api.get(`movies/comment/${movieId}`)
 
   if (response.status === 500) {

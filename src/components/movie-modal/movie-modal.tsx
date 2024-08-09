@@ -5,7 +5,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs.tsx'
-import { MovieCommentList } from '@/components/movie-modal/movie-comment-list/movie-comment-list.tsx'
+import { CommentSection } from '@/components/movie-modal/comment-section/comment-section.tsx'
 import { MovieDetails } from '@/components/movie-modal/movie-details/movie-details.tsx'
 import { useContext } from 'react'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
@@ -30,7 +30,7 @@ export function MovieModal() {
           <MovieDetails />
         </TabsContent>
         <TabsContent value="commentList">
-          <MovieCommentList />
+          <CommentSection />
         </TabsContent>
       </Tabs>
     </DialogContent>

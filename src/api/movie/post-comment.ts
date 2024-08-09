@@ -11,10 +11,9 @@ export async function postComment({
   movieId,
   token,
   comment,
-}: IPostComment): Promise<IComment> {
-
+}: IPostComment): Promise<IPostCommentResponse> {
   const response = await api.post(
-    `movies/comment/${movieId}`,
+    `movie/comment/${movieId}`,
     {
       text: comment,
     },

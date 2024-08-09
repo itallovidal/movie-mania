@@ -15,3 +15,11 @@ interface IGetCustomMovieListResponse {
   name: string
   id: number
 }
+
+interface IGetMovieCommentsResponse {
+  comments: IComment[]
+}
+
+interface IPostCommentResponse {
+  commentCreated: IComment
+}

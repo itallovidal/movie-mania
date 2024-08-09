@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { postComment } from '@/api/post-comment.ts'
+import { postComment } from '@/api/movie/post-comment.ts'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { useMutation } from '@tanstack/react-query'
@@ -18,7 +18,7 @@ const commentSchema = z.object({
 
 export interface ICommentSchema extends z.infer<typeof commentSchema> {}
 
-export function CommentBox() {
+export function CommentForm() {
   const { userToken } = useContext(GlobalContext)
   const { movie } = useContext(CardContext)
   const {
@@ -33,14 +33,19 @@ export function CommentBox() {
   const { mutateAsync: postCommentMutation } = useMutation({
     mutationFn: postComment,
     onSuccess: (data) => {
-      const cached = queryClient.getQueryData<IComment>(['comments'])
-
-      const newComments = [...cached, data]
-
-      console.log(newComments)
+      const cached = queryClient.getQueryData<IGetMovieCommentsResponse>([
+        'comments',
+      ])
 
       if (cached) {
-        queryClient.setQueryData(['comments'], newComments)
+        const newComments: IComment[] = [
+          ...cached.comments,
+          data.commentCreated,
+        ]
+
+        queryClient.setQueryData(['comments'], {
+          comments: newComments,
+        })
       }
     },
   })
@@ -57,6 +62,7 @@ export function CommentBox() {
         reset()
       }
     } catch (e) {
+      console.log(e)
       toast.error('Ops, não foi possível commentar.')
     }
   }

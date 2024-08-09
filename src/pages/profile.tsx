@@ -16,7 +16,7 @@ export function Profile() {
     >
       <AccountData />
 
-      <div className={'bg-yellow-300'}>
+      <div className={''}>
         {userLists &&
           userLists?.map((list) => {
             return <UserCustomList key={list.id} list={list} />

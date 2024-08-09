@@ -1,15 +1,15 @@
 import { useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getMovieComments } from '@/api/get-movie-comments.ts'
-import { PostedComment } from '@/components/movie-modal/movie-comment-list/posted-comment.tsx'
-import { CommentBox } from '@/components/movie-modal/movie-comment-list/comment-box.tsx'
+import { getMovieComments } from '@/api/movie/get-movie-comments.ts'
+import { CommentCard } from '@/components/movie-modal/comment-section/comment-card.tsx'
+import { CommentForm } from '@/components/movie-modal/comment-section/comment-form.tsx'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
-export function MovieCommentList() {
+export function CommentSection() {
   const { userToken } = useContext(GlobalContext)
   const { movie, isDialogOpen } = useContext(CardContext)
-  const { data: comments } = useQuery({
+  const { data: post } = useQuery({
     queryKey: ['comments'],
     queryFn: () => getMovieComments(movie.id),
     enabled: isDialogOpen,
@@ -22,12 +22,12 @@ export function MovieCommentList() {
           'mt-12 px-24 max-h-[450px] overflow-y-scroll no-scrollbar mb-12'
         }
       >
-        {comments?.length &&
-          comments.map((comment) => {
-            return <PostedComment key={comment.id} comment={comment} />
+        {post &&
+          post.comments.map((comment) => {
+            return <CommentCard key={comment.id} comment={comment} />
           })}
       </div>
-      {userToken && <CommentBox />}
+      {userToken && <CommentForm />}
     </div>
   )
 }

@@ -1,9 +1,8 @@
 import { http, HttpResponse } from 'msw'
-import { IComment } from '@/@types/IComment.ts'
-import { ICommentSchema } from '@/components/movie-modal/movie-comment-list/comment-box.tsx'
+import { ICommentSchema } from '@/components/movie-modal/comment-section/comment-form.tsx'
 
 export const postCommentMock = http.post<never, ICommentSchema>(
-  'movies/comment/*',
+  'movie/comment/*',
   async ({ request }) => {
     const { text } = await request.json()
 
@@ -15,14 +14,16 @@ export const postCommentMock = http.post<never, ICommentSchema>(
       })
     }
 
-    return HttpResponse.json<IComment>(
+    return HttpResponse.json<IPostCommentResponse>(
       {
-        id: 4,
-        created_at: 'Há 1 hora.',
-        comment: text,
-        user: {
-          rating: 4,
-          name: 'admin',
+        commentCreated: {
+          id: 4,
+          created_at: 'Há 1 hora.',
+          comment: text,
+          user: {
+            rating: 4,
+            name: 'admin',
+          },
         },
       },
       {
