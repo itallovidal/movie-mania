@@ -1,5 +1,4 @@
 import { api } from '@/lib/axios.config.ts'
-import { IComment } from '@/@types/IComment.ts'
 
 interface IPostComment {
   token: string

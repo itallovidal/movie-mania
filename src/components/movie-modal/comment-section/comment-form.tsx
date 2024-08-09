@@ -10,7 +10,6 @@ import { GlobalContext } from '@/contexts/global-context.tsx'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
-import { IComment } from '@/@types/IComment.ts'
 
 const commentSchema = z.object({
   text: z.string().min(3),

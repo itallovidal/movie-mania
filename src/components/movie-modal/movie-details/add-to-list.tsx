@@ -20,7 +20,6 @@ import { toast } from 'sonner'
 import { queryClient } from '@/lib/reactQuery.ts'
 import { removeMovieFromList } from '@/api/remove-movie-from-list.ts'
 import { GENRES } from '@/@types/genres.ts'
-import { IMovie } from '@/@types/IMovie.ts'
 const listSchema = z.object({
   name: z.string().min(3),
   id: z.number().or(z.null()).default(null),

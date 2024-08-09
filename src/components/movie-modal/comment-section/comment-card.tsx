@@ -1,5 +1,4 @@
 import { Stars } from '@/components/stars.tsx'
-import { IComment } from '@/@types/IComment.ts'
 
 export function CommentCard({ comment }: { comment: IComment }) {
   if (!comment) return <></>

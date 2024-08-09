@@ -1,5 +1,4 @@
 import { DialogTrigger } from '@/components/ui/dialog.tsx'
-import { IMovie } from '@/@types/IMovie.ts'
 import { Dialog } from '@radix-ui/react-dialog'
 import { MovieModal } from '@/components/movie-modal/movie-modal.tsx'
 import { createContext, useContext, useState } from 'react'

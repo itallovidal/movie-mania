@@ -4,7 +4,6 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel.tsx'
 import { MovieCard } from '@/components/movie-card/movie-card.tsx'
-import { IMovie } from '@/@types/IMovie.ts'
 
 interface ISectionCarrousel {
   movies: IMovie[] | undefined
@@ -14,7 +13,7 @@ interface ISectionCarrousel {
 const carrouselConfig = {
   align: 'start',
   loop: true,
-}
+} as const
 
 export function MovieSectionCarrousel({
   movies,
