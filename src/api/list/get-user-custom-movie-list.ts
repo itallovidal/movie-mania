@@ -1,11 +1,10 @@
 import { api } from '@/lib/axios.config.ts'
-import { IMovieList } from '@/@types/IMovieList.ts'
 
-export async function getMovieList(
+export async function getUserCustomMovieList(
   token: string,
   listId: number,
-): Promise<IMovieList> {
-  const response = await api.get(`/lists/${listId}`, {
+): Promise<IGetCustomMovieListResponse> {
+  const response = await api.get(`/list/me/${listId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

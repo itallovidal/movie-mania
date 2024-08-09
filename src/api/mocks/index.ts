@@ -6,7 +6,7 @@ import { getMoviesByGenreMock } from '@/api/mocks/movie/get-movies-by-genre-mock
 import { signUpMock } from '@/api/mocks/user/sign-up-mock.ts'
 import { getCommentsMock } from '@/api/mocks/get-comments-mock.ts'
 import { getListsMock, getUserLists } from '@/api/mocks/list/get-lists-mock.ts'
-import { getMovieList } from '@/api/mocks/get-movie-list.ts'
+import { getUserCustomMovieListMock } from '@/api/mocks/list/get-user-custom-movie-list-mock.ts'
 import { postCommentMock } from '@/api/mocks/post-comment-mock.ts'
 import { postRatingMock } from '@/api/mocks/post-rating-mock.ts'
 import { getMovieRatingByIdMock } from '@/api/mocks/get-movie-rating-by-id-mock.ts'
@@ -22,7 +22,7 @@ export const worker = setupWorker(
   signUpMock,
   getCommentsMock,
   getUserLists,
-  getMovieList,
+  getUserCustomMovieListMock,
   postCommentMock,
   postRatingMock,
   getMovieRatingByIdMock,

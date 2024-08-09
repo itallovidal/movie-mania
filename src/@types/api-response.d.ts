@@ -7,5 +7,11 @@ interface IGetMoviesByGenreResponse {
 }
 
 interface IGetUserMovieListsResponse {
-  userLists: IListResume[]
+  userLists: IListSummary[]
+}
+
+interface IGetCustomMovieListResponse {
+  movies: IMovie[]
+  name: string
+  id: number
 }

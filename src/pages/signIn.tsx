@@ -59,11 +59,11 @@ export function SignIn() {
         <h1 className={'font-josefin mt-4 text-4xl text-center'}>MovieMania</h1>
 
         <div className={'flex flex-col gap-2'}>
-          <p className={'text-lg font-semibold font-roboto'}>Nome</p>
+          <p className={'text-lg font-semibold font-roboto'}>Email</p>
           <Input
             {...register('email')}
             id={'email'}
-            placeholder={'Digite seu nome..'}
+            placeholder={'Digite seu email..'}
           />
           {errors.email && (
             <span className={'text-rose-700'}>{errors.email.message}</span>

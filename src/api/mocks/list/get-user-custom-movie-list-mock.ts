@@ -1,19 +1,45 @@
 import { http, HttpResponse } from 'msw'
 
-export const getMoviesByGenreMock = http.get(
-  '/movies/random/*',
+export const getUserCustomMovieListMock = http.get(
+  '/list/me/*',
   async ({ params }) => {
-    const genre = params[0]
+    const id = params[0]
 
-    if (!genre) {
-      return new HttpResponse('Gênero não fornecido', {
+    if (!id) {
+      return new HttpResponse('ID não fornecido', {
         status: 400,
       })
     }
 
-    return HttpResponse.json<IGetMoviesByGenreResponse>(
+    return HttpResponse.json<IGetCustomMovieListResponse>(
       {
+        name: 'Filmes para ver dormindo',
+        id: 10,
         movies: [
+          {
+            lists: [
+              {
+                id: 10,
+              },
+            ],
+            release_date: '14/02/2024',
+            poster_path: '/lYkKgjnTU8rjzW3vATozgVVwqA9.jpg',
+            id: 801228,
+            title: 'La Capital',
+            overview: '',
+            genres: [
+              {
+                id: 28,
+                name: 'Ação',
+              },
+            ],
+            backdrop_path: '/xYcgR0NV2DSA6HVVB4HwMRMjsEt.jpg',
+            rating: {
+              user: null,
+              average: 10,
+              ratingsCount: 298,
+            },
+          },
           {
             backdrop_path: '/tU3mnpFLOAp2Ia6vHvGIw8ewJQb.jpg',
             id: 1041513,

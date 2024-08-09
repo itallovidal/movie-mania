@@ -24,7 +24,7 @@ interface IMovie {
   }[]
 }
 
-interface IListResume {
+interface IListSummary {
   name: string
   id: number
 }

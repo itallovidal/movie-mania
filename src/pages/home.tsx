@@ -9,7 +9,7 @@ export function Home() {
 
   const randomGenres = useMemo(() => {
     if (genreList) {
-      const randomIndexList = []
+      const randomIndexList: number[] = []
       while (randomIndexList.length < 3) {
         const randomIndex = Math.floor(Math.random() * genreList?.length)
         if (randomIndex !== randomIndexList.at(-1)) {
