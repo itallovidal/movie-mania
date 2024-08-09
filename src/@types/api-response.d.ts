@@ -5,3 +5,7 @@ interface IGetGenreListResponse {
 interface IGetMoviesByGenreResponse {
   movies: IMovie[]
 }
+
+interface IGetUserMovieListsResponse {
+  userLists: IListResume[]
+}

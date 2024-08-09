@@ -23,3 +23,8 @@ interface IMovie {
     id: number
   }[]
 }
+
+interface IListResume {
+  name: string
+  id: number
+}

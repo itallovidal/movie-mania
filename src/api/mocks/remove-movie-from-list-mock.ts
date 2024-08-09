@@ -13,7 +13,6 @@ export const removeMovieFromListMock = http.post<
   const token = request.headers.get('Authorization')
   const payload = await request.json()
 
-
   if (!token) {
     return new HttpResponse('Token inválido ou inexistente.', {
       status: 401,
