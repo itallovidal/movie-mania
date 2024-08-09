@@ -23,3 +23,15 @@ interface IGetMovieCommentsResponse {
 interface IPostCommentResponse {
   commentCreated: IComment
 }
+
+interface IRateMovieResponse {
+  created: {
+    id: number
+    rating: number
+    movieId: number
+  }
+}
+
+interface IGetUserRatingByMovieIdResponse {
+  rating: IRating
+}

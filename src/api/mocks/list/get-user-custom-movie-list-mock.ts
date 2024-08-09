@@ -35,7 +35,6 @@ export const getUserCustomMovieListMock = http.get(
             ],
             backdrop_path: '/xYcgR0NV2DSA6HVVB4HwMRMjsEt.jpg',
             rating: {
-              user: null,
               average: 10,
               ratingsCount: 298,
             },
@@ -49,7 +48,6 @@ export const getUserCustomMovieListMock = http.get(
             title: 'Encanto no Hollywood Bowl',
             rating: {
               average: 7.4,
-              user: null,
               ratingsCount: 7.034,
             },
             release_date: '28/12/2022',
@@ -79,7 +77,6 @@ export const getUserCustomMovieListMock = http.get(
               'Comemoração de 20 anos de Harry Potter: De Volta a Hogwarts',
             rating: {
               average: 7.4,
-              user: null,
               ratingsCount: 7.034,
             },
             release_date: '01/01/2022',

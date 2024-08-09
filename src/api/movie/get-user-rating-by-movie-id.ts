@@ -1,10 +1,10 @@
 import { api } from '@/lib/axios.config.ts'
 
-export async function getMovieRatingById(
+export async function getUserRatingByMovieId(
   token: string,
   movieId: number,
-): Promise<IRating> {
-  const response = await api.get(`movies/rate/${movieId}`, {
+): Promise<IGetUserRatingByMovieIdResponse> {
+  const response = await api.get(`movie/rate/${movieId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

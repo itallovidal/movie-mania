@@ -1,11 +1,11 @@
 import { http, HttpResponse } from 'msw'
-import { IPostRating } from '@/api/rate-movie.ts'
 
-export const postRatingMock = http.post(
-  'movies/rate/*',
-  async ({ request }) => {
+export const rateMovieMock = http.post(
+  'movie/rate/*',
+  async ({ request, params }) => {
     const token = request.headers.get('Authorization')
-    const payload = (await request.json()) as IPostRating
+    const payload = (await request.json()) as { rating: number }
+    const movieId = Number(params[0])
 
     if (!token) {
       return new HttpResponse('Token inválido ou inexistente.', {
@@ -16,8 +16,9 @@ export const postRatingMock = http.post(
     return new HttpResponse(
       JSON.stringify({
         created: {
-          id: payload.movieId,
+          id: Math.random(),
           rating: payload.rating,
+          movieId,
         },
       }),
       {

@@ -23,7 +23,6 @@ export const getMoviesByGenreMock = http.get(
             title: 'Encanto no Hollywood Bowl',
             rating: {
               average: 7.4,
-              user: null,
               ratingsCount: 7.034,
             },
             release_date: '28/12/2022',
@@ -53,7 +52,6 @@ export const getMoviesByGenreMock = http.get(
               'Comemoração de 20 anos de Harry Potter: De Volta a Hogwarts',
             rating: {
               average: 7.4,
-              user: null,
               ratingsCount: 7.034,
             },
             release_date: '01/01/2022',

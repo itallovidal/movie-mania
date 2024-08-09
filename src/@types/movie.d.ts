@@ -15,7 +15,6 @@ interface IMovie {
   }[]
   backdrop_path: string
   rating: {
-    user: null | number
     average: number
     ratingsCount: number
   }
@@ -37,4 +36,10 @@ interface IComment {
     rating: number | null
     name: string
   }
+}
+
+interface IRating {
+  id: number
+  movieId: number
+  rating: number | null
 }

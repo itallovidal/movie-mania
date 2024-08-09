@@ -8,8 +8,8 @@ import { getMovieCommentsMock } from '@/api/mocks/movie/get-movie-comments-mock.
 import { getListsMock, getUserLists } from '@/api/mocks/list/get-lists-mock.ts'
 import { getUserCustomMovieListMock } from '@/api/mocks/list/get-user-custom-movie-list-mock.ts'
 import { postCommentMock } from '@/api/mocks/movie/post-comment-mock.ts'
-import { postRatingMock } from '@/api/mocks/post-rating-mock.ts'
-import { getMovieRatingByIdMock } from '@/api/mocks/get-movie-rating-by-id-mock.ts'
+import { rateMovieMock } from '@/api/mocks/movie/rate-movie-mock.ts'
+import { getUserRatingByMovieIdMock } from '@/api/mocks/get-user-rating-by-movie-id-mock.ts'
 import { getListsByMovieMock } from '@/api/mocks/get-lists-by-movie-mock.ts'
 import { addMovieToListMock } from '@/api/mocks/add-movie-to-list-mock.ts'
 import { removeMovieFromListMock } from '@/api/mocks/remove-movie-from-list-mock.ts'
@@ -24,8 +24,8 @@ export const worker = setupWorker(
   getUserLists,
   getUserCustomMovieListMock,
   postCommentMock,
-  postRatingMock,
-  getMovieRatingByIdMock,
+  rateMovieMock,
+  getUserRatingByMovieIdMock,
   getListsByMovieMock,
   addMovieToListMock,
   removeMovieFromListMock,

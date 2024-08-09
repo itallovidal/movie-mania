@@ -1,16 +1,23 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { ImageCover } from '@/components/image-cover.tsx'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { RateMovie } from '@/components/movie-modal/movie-details/rate-movie.tsx'
 import { Details } from '@/components/movie-modal/movie-details/details.tsx'
-import { AddToList } from '@/components/movie-modal/movie-details/add-to-list.tsx'
 import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
 
 export function MovieDetails() {
-  const { movie, rating } = useContext(CardContext)
-  const ratingState =
-    rating && rating.rating ? <Stars rating={rating.rating} /> : <RateMovie />
+  const { movie, userRating } = useContext(CardContext)
+
+  const ratingState = useMemo(() => {
+    console.log(userRating)
+
+    if (userRating && userRating.rating) {
+      return <Stars rating={userRating.rating} />
+    }
+
+    return <RateMovie />
+  }, [userRating?.rating, userRating])
 
   return (
     <div

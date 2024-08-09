@@ -2,33 +2,38 @@ import { Button } from '@/components/ui/button.tsx'
 import { Star } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
 import { useContext, useState } from 'react'
-import { postRating } from '@/api/rate-movie.ts'
 import { toast } from 'sonner'
 import { useMutation } from '@tanstack/react-query'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { queryClient } from '@/lib/reactQuery.ts'
+import { rateMovie } from '@/api/movie/rate-movie.ts'
 
 export function RateMovie() {
   const [rating, setRating] = useState(0)
   const { movie } = useContext(CardContext)
   const { userToken } = useContext(GlobalContext)
 
-  const { mutateAsync: rateMovie } = useMutation({
-    mutationFn: () =>
-      postRating({
-        movieId: movie.id,
-        token: userToken,
-        rating,
-      }),
+  const { mutateAsync: rateMovieMutation } = useMutation({
+    mutationFn: rateMovie,
     onSuccess: (data) => {
-      queryClient.setQueryData(['movieRating', movie.id], data.created)
+      console.log('Filme Avaliado:')
+      console.log(data)
+
+      queryClient.setQueryData(['user-movie-rating', data.created.movieId], {
+        rating: data.created,
+      })
     },
   })
 
   async function handleSubmitRating() {
+    if (!userToken) return
     try {
-      await rateMovie()
+      await rateMovieMutation({
+        movieId: movie.id,
+        token: userToken,
+        rating,
+      })
       toast.success('Filme Avaliado com sucesso!')
     } catch (e) {
       console.log(e)

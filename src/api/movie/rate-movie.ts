@@ -6,13 +6,13 @@ export interface IPostRating {
   rating: number
 }
 
-export async function postRating({
+export async function rateMovie({
   movieId,
   token,
   rating,
-}: IPostRating): Promise<void> {
+}: IPostRating): Promise<IRateMovieResponse> {
   const response = await api.post(
-    `movies/rate/${movieId}`,
+    `movie/rate/${movieId}`,
     {
       rating,
     },
