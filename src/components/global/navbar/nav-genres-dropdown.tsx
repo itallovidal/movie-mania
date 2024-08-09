@@ -4,7 +4,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu.tsx'
 import { Button } from '@/components/ui/button.tsx'
-import { Navlink } from '@/components/navlink.tsx'
+import { Navlink } from '@/components/global/navbar/navlink.tsx'
 import { useContext } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 

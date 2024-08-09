@@ -6,7 +6,7 @@ import { CommentForm } from '@/components/movie-modal/comment-section/comment-fo
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
-export function CommentSection() {
+export function ModalCommentSection() {
   const { userToken } = useContext(GlobalContext)
   const { movie, isDialogOpen } = useContext(CardContext)
   const { data: post } = useQuery({

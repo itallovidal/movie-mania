@@ -39,7 +39,7 @@ export function MovieCard({
     >
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger>
-          <CardContent movie={movie} />
+          <CardContent/>
         </DialogTrigger>
         <MovieModal />
       </Dialog>

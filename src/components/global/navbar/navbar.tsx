@@ -1,9 +1,9 @@
-import { Navlink } from '@/components/navlink.tsx'
+import { Navlink } from '@/components/global/navbar/navlink.tsx'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { NavGenresDropdown } from '@/components/global/navbar/nav-genres-dropdown.tsx'
-import { ProfileDropdown } from '@/components/profile-dropdown.tsx'
+import { ProfileDropdown } from '@/components/profile/profile-dropdown.tsx'
 
 export function Navbar() {
   const { userToken } = useContext(GlobalContext)

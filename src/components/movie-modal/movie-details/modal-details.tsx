@@ -6,7 +6,7 @@ import { Details } from '@/components/movie-modal/movie-details/details.tsx'
 import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
 
-export function MovieDetails() {
+export function ModalDetails() {
   const { movie, userRating } = useContext(CardContext)
 
   const ratingState = useMemo(() => {
