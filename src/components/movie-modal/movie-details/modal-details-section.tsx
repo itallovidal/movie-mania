@@ -1,23 +1,16 @@
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { ImageCover } from '@/components/image-cover.tsx'
 import { RateMovie } from '@/components/movie-modal/movie-details/rate-movie.tsx'
 import { Details } from '@/components/movie-modal/movie-details/details.tsx'
 import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
-import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
+// import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
+import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
 
-interface IModalDetailsSectionProps {
-  movie: IMovie & { sectionId: number }
-  userRating: IRating | undefined
-}
+export function ModalDetailsSection() {
+  const { movie, userRating } = useContext(MovieCardContext)
 
-export function ModalDetailsSection({
-  movie,
-  userRating,
-}: IModalDetailsSectionProps) {
   const ratingState = useMemo(() => {
-    console.log(userRating)
-
     if (userRating && userRating.rating) {
       return <Stars rating={userRating.rating} />
     }
@@ -43,7 +36,7 @@ export function ModalDetailsSection({
         <div className={'col-start-6 row-start-1 col-span-7 '}>
           <Details details={movie} />
           {ratingState}
-          <CustomListVisualizer movie={movie} />
+          {/* <CustomListVisualizer/> */}
         </div>
       </div>
     </div>
