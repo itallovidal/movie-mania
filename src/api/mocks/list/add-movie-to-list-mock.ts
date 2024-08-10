@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { IListSchema } from '@/components/movie-modal/movie-details/add-to-list.tsx'
+import { IListSchema } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 
 interface IAddMovieToListRequest {
   list: IListSchema
@@ -7,7 +7,7 @@ interface IAddMovieToListRequest {
 }
 
 export const addMovieToListMock = http.post<never, IAddMovieToListRequest>(
-  '/lists/movies/add',
+  '/list/movie/add',
   async ({ request }) => {
     const token = request.headers.get('Authorization')
     const payload = await request.json()
@@ -18,8 +18,8 @@ export const addMovieToListMock = http.post<never, IAddMovieToListRequest>(
       })
     }
 
-    return new HttpResponse(
-      JSON.stringify({
+    return HttpResponse.json<IAddMovieToListResponse>(
+      {
         listAdded: {
           id:
             payload.list.id === null
@@ -27,7 +27,8 @@ export const addMovieToListMock = http.post<never, IAddMovieToListRequest>(
               : payload.list.id,
           name: payload.list.name,
         },
-      }),
+        movieAdded: payload.movieId,
+      },
       {
         status: 201,
       },

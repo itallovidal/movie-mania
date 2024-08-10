@@ -1,20 +1,19 @@
 import { api } from '@/lib/axios.config.ts'
-import { IList } from '@/@types/IList.ts'
-import { IListSchema } from '@/components/movie-modal/movie-details/add-to-list.tsx'
+import { IListSchema } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 
 interface IAddMovieToListRequest {
   list: IListSchema
   movieId: number
-  token: number
+  token: string
 }
 
 export async function addMovieToList({
   token,
   list,
   movieId,
-}: IAddMovieToListRequest): Promise<IList[]> {
+}: IAddMovieToListRequest): Promise<IAddMovieToListResponse> {
   const response = await api.post(
-    '/lists/movies/add',
+    '/list/movie/add',
     {
       list,
       movieId,

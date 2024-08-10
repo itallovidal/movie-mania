@@ -9,7 +9,6 @@ import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
 const commentSchema = z.object({
   text: z.string().min(3),
@@ -17,9 +16,8 @@ const commentSchema = z.object({
 
 export interface ICommentSchema extends z.infer<typeof commentSchema> {}
 
-export function CommentForm() {
+export function CommentForm({ movieId }: { movieId: number }) {
   const { userToken } = useContext(GlobalContext)
-  const { movie } = useContext(CardContext)
   const {
     handleSubmit,
     register,
@@ -54,7 +52,7 @@ export function CommentForm() {
       if (userToken) {
         await postCommentMutation({
           token: userToken,
-          movieId: movie.id,
+          movieId,
           comment: data.text,
         })
         toast.success('Comentário postado com sucesso!')

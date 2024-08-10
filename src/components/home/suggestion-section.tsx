@@ -9,9 +9,13 @@ interface ISuggestionSectionProps {
 export function SuggestionSection({
   genre: { id, name },
 }: ISuggestionSectionProps) {
+  console.log('idsecao')
+  console.log(id)
+
   const { data: moviesByGenreList } = useQuery({
     queryKey: ['home-suggestion-movies', id],
     queryFn: () => getMoviesByGenre(id),
+    staleTime: Infinity,
   })
 
   return (

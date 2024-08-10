@@ -6,13 +6,19 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs.tsx'
 import { ModalCommentSection } from '@/components/movie-modal/comment-section/modal-comment-section.tsx'
-import { ModalDetails } from '@/components/movie-modal/movie-details/modal-details.tsx'
-import { useContext } from 'react'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
+import { ModalDetailsSection } from '@/components/movie-modal/movie-details/modal-details-section.tsx'
 
-export function MovieModal() {
-  const { movie } = useContext(CardContext)
+interface IMovieModalProps {
+  movie: IMovie & { sectionId: number }
+  isDialogOpen: boolean
+  userRating: IRating | undefined
+}
 
+export function MovieModal({
+  movie,
+  isDialogOpen,
+  userRating,
+}: IMovieModalProps) {
   return (
     <DialogContent
       title={`${movie.title} Details`}
@@ -27,10 +33,10 @@ export function MovieModal() {
           <TabsTrigger value="commentList">Lista de Comentários</TabsTrigger>
         </TabsList>
         <TabsContent value="details">
-          <ModalDetails />
+          <ModalDetailsSection movie={movie} userRating={userRating} />
         </TabsContent>
         <TabsContent value="commentList">
-          <ModalCommentSection />
+          <ModalCommentSection movieId={movie.id} isDialogOpen={isDialogOpen} />
         </TabsContent>
       </Tabs>
     </DialogContent>

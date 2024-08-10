@@ -39,3 +39,13 @@ interface IGetUserRatingByMovieIdResponse {
 interface IGetUserProfileResponse {
   profile: IProfile
 }
+
+interface IAddMovieToListResponse {
+  listAdded: IListSummary
+  movieAdded: number
+}
+
+interface IRemoveMovieFromListResponse {
+  selectedList: IListSummary
+  movieRemoved: number
+}

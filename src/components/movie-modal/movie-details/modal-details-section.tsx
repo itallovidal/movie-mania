@@ -1,14 +1,20 @@
-import { useContext, useMemo } from 'react'
+import { useMemo } from 'react'
 import { ImageCover } from '@/components/image-cover.tsx'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { RateMovie } from '@/components/movie-modal/movie-details/rate-movie.tsx'
 import { Details } from '@/components/movie-modal/movie-details/details.tsx'
 import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
+import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 
-export function ModalDetails() {
-  const { movie, userRating } = useContext(CardContext)
+interface IModalDetailsSectionProps {
+  movie: IMovie & { sectionId: number }
+  userRating: IRating | undefined
+}
 
+export function ModalDetailsSection({
+  movie,
+  userRating,
+}: IModalDetailsSectionProps) {
   const ratingState = useMemo(() => {
     console.log(userRating)
 
@@ -16,7 +22,7 @@ export function ModalDetails() {
       return <Stars rating={userRating.rating} />
     }
 
-    return <RateMovie />
+    return <RateMovie movieId={movie.id} />
   }, [userRating?.rating, userRating])
 
   return (
@@ -35,9 +41,9 @@ export function ModalDetails() {
           <ImageCover display={'initial'} cover={movie.poster_path} />
         </div>
         <div className={'col-start-6 row-start-1 col-span-7 '}>
-          <Details />
+          <Details details={movie} />
           {ratingState}
-          {/* <AddToList /> */}
+          <CustomListVisualizer movie={movie} />
         </div>
       </div>
     </div>

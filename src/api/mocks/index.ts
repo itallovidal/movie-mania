@@ -11,8 +11,8 @@ import { postCommentMock } from '@/api/mocks/movie/post-comment-mock.ts'
 import { rateMovieMock } from '@/api/mocks/movie/rate-movie-mock.ts'
 import { getUserRatingByMovieIdMock } from '@/api/mocks/movie/get-user-rating-by-movie-id-mock.ts'
 import { getListsByMovieMock } from '@/api/mocks/get-lists-by-movie-mock.ts'
-import { addMovieToListMock } from '@/api/mocks/add-movie-to-list-mock.ts'
-import { removeMovieFromListMock } from '@/api/mocks/remove-movie-from-list-mock.ts'
+import { addMovieToListMock } from '@/api/mocks/list/add-movie-to-list-mock.ts'
+import { removeMovieFromListMock } from '@/api/mocks/list/remove-movie-from-list-mock.ts'
 import { getGenres } from '@/api/mocks/movie/get-genres.ts'
 
 export const worker = setupWorker(

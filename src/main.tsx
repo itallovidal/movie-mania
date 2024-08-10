@@ -4,9 +4,5 @@ import { App } from './app.tsx'
 import { setupMSW } from '@/api/mocks'
 
 setupMSW().then(() => {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  )
+  ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
 })

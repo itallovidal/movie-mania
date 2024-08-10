@@ -4,14 +4,12 @@ import * as colors from 'tailwindcss/colors'
 import { useContext, useState } from 'react'
 import { toast } from 'sonner'
 import { useMutation } from '@tanstack/react-query'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { queryClient } from '@/lib/reactQuery.ts'
 import { rateMovie } from '@/api/movie/rate-movie.ts'
 
-export function RateMovie() {
+export function RateMovie({ movieId }: { movieId: number }) {
   const [rating, setRating] = useState(0)
-  const { movie } = useContext(CardContext)
   const { userToken } = useContext(GlobalContext)
 
   const { mutateAsync: rateMovieMutation } = useMutation({
@@ -30,7 +28,7 @@ export function RateMovie() {
     if (!userToken) return
     try {
       await rateMovieMutation({
-        movieId: movie.id,
+        movieId,
         token: userToken,
         rating,
       })

@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { IListSchema } from '@/components/movie-modal/movie-details/add-to-list.tsx'
+import { IListSchema } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 
 interface IRemoveMovieFromListRequest {
   list: IListSchema
@@ -9,7 +9,7 @@ interface IRemoveMovieFromListRequest {
 export const removeMovieFromListMock = http.post<
   never,
   IRemoveMovieFromListRequest
->('/lists/movies/remove', async ({ request }) => {
+>('/list/movie/remove', async ({ request }) => {
   const token = request.headers.get('Authorization')
   const payload = await request.json()
 
@@ -19,13 +19,14 @@ export const removeMovieFromListMock = http.post<
     })
   }
 
-  return new HttpResponse(
-    JSON.stringify({
-      listRemoved: {
-        id: payload.list.id,
+  return HttpResponse.json<IRemoveMovieFromListResponse>(
+    {
+      selectedList: {
+        id: payload.list.id!,
         name: payload.list.name,
       },
-    }),
+      movieRemoved: payload.movieId,
+    },
     {
       status: 201,
     },

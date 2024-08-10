@@ -4,14 +4,20 @@ import { getMovieComments } from '@/api/movie/get-movie-comments.ts'
 import { CommentCard } from '@/components/movie-modal/comment-section/comment-card.tsx'
 import { CommentForm } from '@/components/movie-modal/comment-section/comment-form.tsx'
 import { GlobalContext } from '@/contexts/global-context.tsx'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
 
-export function ModalCommentSection() {
+interface IModalCommentSection {
+  movieId: number
+  isDialogOpen: boolean
+}
+
+export function ModalCommentSection({
+  movieId,
+  isDialogOpen,
+}: IModalCommentSection) {
   const { userToken } = useContext(GlobalContext)
-  const { movie, isDialogOpen } = useContext(CardContext)
   const { data: post } = useQuery({
     queryKey: ['comments'],
-    queryFn: () => getMovieComments(movie.id),
+    queryFn: () => getMovieComments(movieId),
     enabled: isDialogOpen,
   })
 
@@ -27,7 +33,7 @@ export function ModalCommentSection() {
             return <CommentCard key={comment.id} comment={comment} />
           })}
       </div>
-      {userToken && <CommentForm />}
+      {userToken && <CommentForm movieId={movieId} />}
     </div>
   )
 }

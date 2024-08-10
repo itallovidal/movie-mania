@@ -1,8 +1,7 @@
-import { Header } from '@/components/home/header.tsx'
 import { useQuery } from '@tanstack/react-query'
 import { getMoviesByGenre } from '@/api/movie/get-movies-by-genre.ts'
-import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 import { useParams } from 'react-router-dom'
+import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 
 export function GenreCatalogue() {
   const { id } = useParams() as { id: string }
@@ -20,7 +19,7 @@ export function GenreCatalogue() {
           {catalogue.movies.map((movie) => {
             return (
               <div key={movie.id} className={'w-1/4'}>
-                <MovieCard movie={movie} sectionId={0} />
+                <MovieCard movie={{ ...movie, sectionId: 0 }} />
               </div>
             )
           })}

@@ -25,7 +25,7 @@ export function MovieSectionCarrousel({
         {movies &&
           movies.map((movie, index) => (
             <CarouselItem key={index} className="basis-1/4">
-              <MovieCard movie={movie} sectionId={sectionId} />
+              <MovieCard movie={{ ...movie, sectionId }} />
             </CarouselItem>
           ))}
       </CarouselContent>

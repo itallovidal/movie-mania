@@ -1,27 +1,34 @@
-import { useContext } from 'react'
-import { CardContext } from '@/components/movie-card/movie-card.tsx'
 import { Badge } from '@/components/ui/badge.tsx'
-export function Details() {
-  const { movie } = useContext(CardContext)
+
+interface IDetailsProps {
+  details: Pick<
+    IMovie,
+    'title' | 'rating' | 'genres' | 'release_date' | 'overview'
+  >
+}
+
+export function Details({
+  details: { release_date, title, genres, rating, overview },
+}: IDetailsProps) {
   return (
     <>
       <div className={'space-y-2  w-full'}>
         <div className={'flex justify-between items-center'}>
-          <h1 className={'text-4xl w-1/2 font-josefin'}>{movie.title}</h1>
+          <h1 className={'text-4xl w-1/2 font-josefin'}>{title}</h1>
           <span
             className={
               'text-darkBlue bg-white px-4 py-2 gap content-center rounded-l-md h-fit '
             }
           >
-            Média de {movie.rating.average}
+            Média de {rating.average}
           </span>
         </div>
         <p className={'leading-7 w-9/12'}>
-          {movie.overview || 'Sem resumos disponíveis.'}
+          {overview || 'Sem resumos disponíveis.'}
         </p>
       </div>
       <div className={'flex gap-2 mt-4 mb-2'}>
-        {movie.genres.map((genre) => {
+        {genres.map((genre) => {
           return (
             <Badge variant={'secondary'} key={genre.id}>
               {genre.name}
@@ -29,7 +36,7 @@ export function Details() {
           )
         })}
       </div>
-      <Badge variant={'secondary'}>{movie.release_date}</Badge>
+      <Badge variant={'secondary'}>{release_date}</Badge>
     </>
   )
 }
