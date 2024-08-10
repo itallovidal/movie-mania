@@ -39,7 +39,6 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
   const {
     handleSubmit,
     register,
-    setValue,
     formState: { errors },
   } = useForm<IListSchema>({
     resolver: zodResolver(listSchema),
@@ -48,6 +47,18 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
   const { mutateAsync: addMovieToListMutation } = useMutation({
     mutationFn: addMovieToList,
     onSuccess: (data) => {
+      if (
+        !userLists?.some((list) => list.id === data.listAdded.id) &&
+        userLists
+      ) {
+        console.log('Lista nova criada!')
+
+        const updatedLists = [...userLists, data.listAdded]
+        queryClient.setQueryData(['user-lists'], {
+          userLists: updatedLists,
+        })
+      }
+
       const cached = queryClient.getQueryData<{ movies: IMovie[] }>([
         'home-suggestion-movies',
         movie.sectionId,

@@ -21,10 +21,7 @@ export const addMovieToListMock = http.post<never, IAddMovieToListRequest>(
     return HttpResponse.json<IAddMovieToListResponse>(
       {
         listAdded: {
-          id:
-            payload.list.id === null
-              ? Math.round(Math.random())
-              : payload.list.id,
+          id: payload.list.id === null ? Math.random() * 100 : payload.list.id,
           name: payload.list.name,
         },
         movieAdded: payload.movieId,
