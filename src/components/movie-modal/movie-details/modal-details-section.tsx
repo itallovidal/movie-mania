@@ -4,7 +4,7 @@ import { RateMovie } from '@/components/movie-modal/movie-details/rate-movie.tsx
 import { Details } from '@/components/movie-modal/movie-details/details.tsx'
 import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
-// import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
+import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
 
 export function ModalDetailsSection() {
@@ -36,7 +36,7 @@ export function ModalDetailsSection() {
         <div className={'col-start-6 row-start-1 col-span-7 '}>
           <Details details={movie} />
           {ratingState}
-          {/* <CustomListVisualizer/> */}
+          <CustomListVisualizer />
         </div>
       </div>
     </div>

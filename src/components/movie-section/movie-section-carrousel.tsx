@@ -6,8 +6,8 @@ import {
 import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 
 interface ISectionCarrousel {
-  movies: IMovie[] | undefined
-  sectionId: number
+  movies: IMovie[]
+  queryKeys: never[]
 }
 
 const carrouselConfig = {
@@ -17,7 +17,7 @@ const carrouselConfig = {
 
 export function MovieSectionCarrousel({
   movies,
-  sectionId,
+  queryKeys,
 }: ISectionCarrousel) {
   return (
     <Carousel opts={carrouselConfig}>
@@ -25,7 +25,7 @@ export function MovieSectionCarrousel({
         {movies &&
           movies.map((movie, index) => (
             <CarouselItem key={index} className="basis-1/4">
-              <MovieCard movie={{ ...movie, sectionId }} />
+              <MovieCard movie={movie} queryKeys={queryKeys} />
             </CarouselItem>
           ))}
       </CarouselContent>

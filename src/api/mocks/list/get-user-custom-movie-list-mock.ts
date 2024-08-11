@@ -19,7 +19,7 @@ export const getUserCustomMovieListMock = http.get(
           {
             lists: [
               {
-                id: 10,
+                id: 1,
               },
             ],
             release_date: '14/02/2024',
@@ -86,7 +86,11 @@ export const getUserCustomMovieListMock = http.get(
                 name: 'Documentário',
               },
             ],
-            lists: [],
+            lists: [
+              {
+                id: 1,
+              },
+            ],
           },
         ],
       },

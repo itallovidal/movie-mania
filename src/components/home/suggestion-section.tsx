@@ -9,9 +9,6 @@ interface ISuggestionSectionProps {
 export function SuggestionSection({
   genre: { id, name },
 }: ISuggestionSectionProps) {
-  console.log('idsecao')
-  console.log(id)
-
   const { data: moviesByGenreList } = useQuery({
     queryKey: ['home-suggestion-movies', id],
     queryFn: () => getMoviesByGenre(id),
@@ -26,7 +23,7 @@ export function SuggestionSection({
       </MovieSection.Header>
       <MovieSection.Carrousel
         movies={moviesByGenreList?.movies}
-        sectionId={id}
+        queryKeys={['home-suggestion-movies', id]}
       />
     </MovieSection.Root>
   )

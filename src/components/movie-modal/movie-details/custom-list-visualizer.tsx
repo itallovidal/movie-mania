@@ -17,6 +17,7 @@ import { MovieContext } from '@/contexts/movie-context.tsx'
 import { queryClient } from '@/lib/reactQuery.ts'
 import { removeMovieFromList } from '@/api/list/remove-movie-from-list.ts'
 import { Check } from 'lucide-react'
+import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
 
 const listSchema = z.object({
   name: z.string().min(3),
@@ -25,15 +26,12 @@ const listSchema = z.object({
 
 export interface IListSchema extends z.infer<typeof listSchema> {}
 
-interface ICustomListVisualizerProps {
-  movie: IMovie & { sectionId: number }
-}
-
-export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
+export function CustomListVisualizer() {
   const { userLists } = useContext(MovieContext)
   const { userToken } = useContext(GlobalContext)
+  const { movie, queryKeys } = useContext(MovieCardContext)
 
-  console.log('Filme Atual do Modal:')
+  console.log('Filme em questão:')
   console.log(movie)
 
   const {
@@ -59,10 +57,7 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
         })
       }
 
-      const cached = queryClient.getQueryData<{ movies: IMovie[] }>([
-        'home-suggestion-movies',
-        movie.sectionId,
-      ])
+      const cached = queryClient.getQueryData(queryKeys)
 
       if (!cached) return
 
@@ -79,7 +74,7 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
         return cachedMovie
       })
 
-      queryClient.setQueryData(['home-suggestion-movies', movie.sectionId], {
+      queryClient.setQueryData(queryKeys, {
         movies: updatedMovies,
       })
     },
@@ -88,9 +83,7 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
   const { mutateAsync: removeMovieFromListMutation } = useMutation({
     mutationFn: removeMovieFromList,
     onSuccess: (data) => {
-      const moviesCached = queryClient.getQueryData<{
-        movies: IMovie[]
-      }>(['home-suggestion-movies', movie.sectionId])
+      const moviesCached = queryClient.getQueryData(queryKeys)
 
       if (!moviesCached) return
 
@@ -111,7 +104,7 @@ export function CustomListVisualizer({ movie }: ICustomListVisualizerProps) {
 
       queryClient.setQueryData<{
         movies: IMovie[]
-      }>(['home-suggestion-movies', movie.sectionId], {
+      }>(queryKeys, {
         movies: updatedMovies,
       })
     },

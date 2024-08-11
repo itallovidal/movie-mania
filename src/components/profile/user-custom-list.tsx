@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getUserCustomMovieList } from '@/api/list/get-user-custom-movie-list.ts'
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { MovieSection } from '@/components/movie-section'
 
@@ -12,7 +12,7 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
   const { userToken } = useContext(GlobalContext)
 
   const { data: customLists } = useQuery({
-    queryKey: [`${name}`],
+    queryKey: [`${name}`, id],
     queryFn: () => {
       if (userToken) return getUserCustomMovieList(userToken, id)
     },
@@ -20,14 +20,30 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     enabled: !!userToken,
   })
 
-  if (!customLists || customLists.movies.length === 0) return <></>
+  const filteredMovies = useMemo(() => {
+    if (customLists) {
+      return customLists?.movies.filter((movie: IMovie) => {
+        const r = movie.lists.findIndex((el) => el.id === id)
+        return r > -1
+      })
+    }
+
+    return undefined
+  }, [customLists])
+
+  console.log(filteredMovies)
+
+  if (!filteredMovies || filteredMovies.length === 0) return <></>
 
   return (
     <MovieSection.Root>
       <MovieSection.Header>
         <MovieSection.Title>{name}</MovieSection.Title>
       </MovieSection.Header>
-      <MovieSection.Carrousel movies={customLists?.movies} sectionId={id} />
+      <MovieSection.Carrousel
+        movies={filteredMovies}
+        queryKeys={[`${name}`, id]}
+      />
     </MovieSection.Root>
   )
 }

@@ -1,6 +1,4 @@
 import { useContext } from 'react'
-
-// import { MovieList } from '@/components/profile/movie-list.tsx'
 import { AccountData } from '@/components/profile/account-data.tsx'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 import { UserCustomList } from '@/components/profile/user-custom-list.tsx'

@@ -16,10 +16,6 @@ export const getUserLists = http.get('/list', async ({ request }) => {
           name: 'Filmes para ver dormindo.',
           id: 1,
         },
-        {
-          name: 'Filmes Preferidos',
-          id: 2,
-        },
       ],
     },
     {
