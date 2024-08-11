@@ -16,5 +16,7 @@ export async function getUserRatingByMovieId(
     throw new Error(response.data.description)
   }
 
+  console.log(response.data)
+
   return response.data
 }

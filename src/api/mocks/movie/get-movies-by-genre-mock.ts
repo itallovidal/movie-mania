@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 export const getMoviesByGenreMock = http.get(
-  '/movies/random/*',
+  '/movie/random/*',
   async ({ params }) => {
     const genre = params[0]
 

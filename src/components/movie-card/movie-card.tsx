@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { Card } from '@/components/movie-card/index.tsx'
 import { ImageCover } from '@/components/image-cover.tsx'
 import { useQuery } from '@tanstack/react-query'
@@ -28,13 +28,18 @@ export function MovieCard({
     setIsDialogOpen((prev) => !prev)
   }
 
+  console.log(movie.id)
+
   const { data: user } = useQuery({
     queryKey: ['user-movie-rating', movie.id],
     queryFn: () => {
       return getUserRatingByMovieId(userToken, movie.id)
     },
     enabled: !!userToken,
+    staleTime: Infinity,
   })
+
+  console.log(user)
 
   return (
     <MovieCardContext.Provider

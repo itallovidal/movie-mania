@@ -7,7 +7,7 @@ export function GenreCatalogue() {
   const { id } = useParams() as { id: string }
   const { data: catalogue } = useQuery({
     queryKey: [id],
-    queryFn: () => getMoviesByGenre(Number(id)),
+    queryFn: () => getMoviesByGenre(id),
   })
 
   if (!catalogue) return <></>
@@ -19,7 +19,7 @@ export function GenreCatalogue() {
           {catalogue.movies.map((movie) => {
             return (
               <div key={movie.id} className={'w-1/4'}>
-                <MovieCard movie={{ ...movie, sectionId: 0 }} />
+                <MovieCard movie={movie} queryKeys={[id]} />
               </div>
             )
           })}

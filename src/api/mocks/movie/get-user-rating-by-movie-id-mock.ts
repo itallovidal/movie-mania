@@ -1,14 +1,14 @@
 import { http, HttpResponse } from 'msw'
 
 export const getUserRatingByMovieIdMock = http.get('movie/rate/*', async () => {
-  return HttpResponse.json<IGetUserRatingByMovieIdResponse>(
-    {
+  return new HttpResponse<IGetUserRatingByMovieIdResponse>(
+    JSON.stringify({
       rating: {
         id: 31203,
         movieId: 1,
-        rating: null,
+        rating: 4,
       },
-    },
+    }),
     {
       status: 200,
     },
