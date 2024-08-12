@@ -16,7 +16,6 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     queryFn: () => {
       if (userToken) return getUserCustomMovieList(userToken, id)
     },
-    staleTime: Infinity,
     enabled: !!userToken,
   })
 

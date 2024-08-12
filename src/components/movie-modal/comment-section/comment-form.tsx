@@ -11,7 +11,10 @@ import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
 
 const commentSchema = z.object({
-  text: z.string().min(3),
+  text: z.string().min(3, {
+    message:
+      'Ops, o tamanho necessário para fazer um comentário são 3 caracteres.',
+  }),
 })
 
 export interface ICommentSchema extends z.infer<typeof commentSchema> {}
