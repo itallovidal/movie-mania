@@ -15,6 +15,8 @@ export function ModalCommentSection() {
     enabled: isDialogOpen,
   })
 
+  console.log(post)
+
   return (
     <div className={'h-full rounded-md bg-darkBlue p-4'}>
       <div

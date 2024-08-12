@@ -13,6 +13,9 @@ import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
 export function MovieModal() {
   const { movie } = useContext(MovieCardContext)
 
+  console.log('Modal do filme:')
+  console.log(movie)
+
   return (
     <DialogContent
       title={`${movie.title} Details`}
