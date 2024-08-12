@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { ISignInSchema } from '@/pages/signIn.tsx'
 
 export const signInMock = http.post<never, ISignInSchema>(
-  'users/login',
+  'user/login',
   async ({ request }) => {
     const { email } = await request.json()
 

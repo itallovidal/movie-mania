@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 export const getMovieCommentsMock = http.get(
-  '/movies/comment/*',
+  '/movie/comment/*',
   async ({ params }) => {
     const id = params[0]
 
