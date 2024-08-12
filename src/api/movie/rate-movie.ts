@@ -12,7 +12,7 @@ export async function rateMovie({
   rating,
 }: IPostRating): Promise<IRateMovieResponse> {
   const response = await api.post(
-    `movie/rate/${movieId}`,
+    `movie/rating/${movieId}`,
     {
       rating,
     },

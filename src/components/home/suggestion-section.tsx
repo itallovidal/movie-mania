@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { getMoviesByGenre } from '@/api/movie/get-movies-by-genre.ts'
 import { MovieSection } from '@/components/movie-section'
+import { useContext } from 'react'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 
 interface ISuggestionSectionProps {
   genre: IGenre
@@ -9,9 +11,11 @@ interface ISuggestionSectionProps {
 export function SuggestionSection({
   genre: { id, name },
 }: ISuggestionSectionProps) {
+  const { userToken } = useContext(GlobalContext)
+
   const { data: moviesByGenreList } = useQuery({
     queryKey: ['home-suggestion-movies', id],
-    queryFn: () => getMoviesByGenre(id),
+    queryFn: () => getMoviesByGenre(id, userToken),
     staleTime: Infinity,
   })
 

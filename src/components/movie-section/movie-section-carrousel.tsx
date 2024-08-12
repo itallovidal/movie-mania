@@ -23,8 +23,11 @@ export function MovieSectionCarrousel({
     <Carousel opts={carrouselConfig}>
       <CarouselContent>
         {movies &&
-          movies.map((movie, index) => (
-            <CarouselItem key={index} className="basis-1/4">
+          movies.map((movie) => (
+            <CarouselItem
+              key={`${queryKeys[0]}-${movie.id}`}
+              className="basis-1/4"
+            >
               <MovieCard movie={movie} queryKeys={queryKeys} />
             </CarouselItem>
           ))}

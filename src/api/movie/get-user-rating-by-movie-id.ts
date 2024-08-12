@@ -6,7 +6,7 @@ export async function getUserRatingByMovieId(
 ): Promise<IGetUserRatingByMovieIdResponse> {
   if (!token) throw new Error('Token não inválido.')
 
-  const response = await api.get(`movie/rate/${movieId}`, {
+  const response = await api.get(`movie/rating/${movieId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -15,8 +15,6 @@ export async function getUserRatingByMovieId(
   if (response.status === 500) {
     throw new Error(response.data.description)
   }
-
-  console.log(response.data)
 
   return response.data
 }

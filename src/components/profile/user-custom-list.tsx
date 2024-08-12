@@ -31,7 +31,6 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     return undefined
   }, [customLists])
 
-  console.log(filteredMovies)
 
   if (!filteredMovies || filteredMovies.length === 0) return <></>
 

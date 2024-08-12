@@ -28,8 +28,6 @@ export function MovieCard({
     setIsDialogOpen((prev) => !prev)
   }
 
-  console.log(movie.id)
-
   const { data: user } = useQuery({
     queryKey: ['user-movie-rating', movie.id],
     queryFn: () => {
@@ -39,7 +37,6 @@ export function MovieCard({
     staleTime: Infinity,
   })
 
-  console.log(user)
 
   return (
     <MovieCardContext.Provider

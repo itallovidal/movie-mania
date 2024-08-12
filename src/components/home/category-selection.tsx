@@ -40,7 +40,7 @@ function CategorySelectionContent({
             return <></>
           }
 
-          return <CategoryCard key={genre.id} genre={genre} />
+          return <CategoryCard key={`${genre.id - index}`} genre={genre} />
         })}
     </div>
   )

@@ -31,9 +31,6 @@ export function CustomListVisualizer() {
   const { userToken } = useContext(GlobalContext)
   const { movie, queryKeys } = useContext(MovieCardContext)
 
-  console.log('Filme em questão:')
-  console.log(movie)
-
   const {
     handleSubmit,
     register,

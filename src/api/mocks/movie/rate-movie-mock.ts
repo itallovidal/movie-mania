@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 export const rateMovieMock = http.post(
-  'movie/rate/*',
+  'movie/rating/*',
   async ({ request, params }) => {
     const token = request.headers.get('Authorization')
     const payload = (await request.json()) as { rating: number }
