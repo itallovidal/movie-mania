@@ -20,6 +20,9 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     enabled: !!userToken,
   })
 
+  console.log('listas customizadas:')
+  console.log(customLists)
+
   const filteredMovies = useMemo(() => {
     if (customLists) {
       return customLists?.movies.filter((movie: IMovie) => {
@@ -31,6 +34,8 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     return undefined
   }, [customLists])
 
+  console.log('listas filtradas:')
+  console.log(filteredMovies)
 
   if (!filteredMovies || filteredMovies.length === 0) return <></>
 
