@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
 import { signIn } from '@/api/user/sign-in.ts'
 import { toast } from 'sonner'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 
 const signSchema = z.object({
@@ -22,6 +22,7 @@ export interface ISignInSchema extends z.infer<typeof signSchema> {}
 
 export function SignIn() {
   const { handleSetToken, handleNavigate } = useContext(GlobalContext)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     handleSubmit,
@@ -32,6 +33,7 @@ export function SignIn() {
   })
 
   async function handleSignIn(data: ISignInSchema) {
+    setIsLoading(true)
     try {
       const token = await signIn(data)
       handleSetToken(token)
@@ -41,6 +43,8 @@ export function SignIn() {
         handleNavigate('/')
       }, 1000)
     } catch (e) {
+      setIsLoading(false)
+
       if (e instanceof Error) {
         toast.error(e.message)
         return
@@ -82,7 +86,9 @@ export function SignIn() {
           )}
         </div>
 
-        <Button className={' mt-4'}>Entrar</Button>
+        <Button disabled={isLoading} className={' mt-4'}>
+          Entrar
+        </Button>
       </form>
 
       <Separator className={'w-6 m-auto'} />
@@ -93,9 +99,9 @@ export function SignIn() {
         }
       >
         <p className={'text-md font-semibold'}>Não possui conta?</p>
-        <Link to={'/sign-up'}>
-          <Button variant={'outline'}>Criar Conta</Button>
-        </Link>
+        <Button disabled={isLoading} variant={'outline'}>
+          <Link to={'/sign-up'}>Criar Conta</Link>
+        </Button>
       </div>
     </div>
   )

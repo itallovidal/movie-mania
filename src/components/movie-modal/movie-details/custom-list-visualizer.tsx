@@ -39,45 +39,49 @@ export function CustomListVisualizer() {
     resolver: zodResolver(listSchema),
   })
 
-  const { mutateAsync: addMovieToListMutation } = useMutation({
-    mutationFn: addMovieToList,
-    onSuccess: (data) => {
-      if (
-        !userLists?.some((list) => list.id === data.listAdded.id) &&
-        userLists
-      ) {
-        console.log('Lista nova criada!')
+  const { mutateAsync: addMovieToListMutation, isPending: addRequestPending } =
+    useMutation({
+      mutationFn: addMovieToList,
+      onSuccess: (data) => {
+        if (
+          !userLists?.some((list) => list.id === data.listAdded.id) &&
+          userLists
+        ) {
+          console.log('Lista nova criada!')
 
-        const updatedLists = [...userLists, data.listAdded]
-        queryClient.setQueryData(['user-lists'], {
-          userLists: updatedLists,
-        })
-      }
-
-      const cached = queryClient.getQueryData(queryKeys)
-
-      if (!cached) return
-
-      const updatedMovies = cached.movies.map((cachedMovie) => {
-        if (cachedMovie.id === data.movieAdded) {
-          const newList = [...cachedMovie.lists, data.listAdded]
-
-          return {
-            ...cachedMovie,
-            lists: newList,
-          }
+          const updatedLists = [...userLists, data.listAdded]
+          queryClient.setQueryData(['user-lists'], {
+            userLists: updatedLists,
+          })
         }
 
-        return cachedMovie
-      })
+        const cached = queryClient.getQueryData(queryKeys)
 
-      queryClient.setQueryData(queryKeys, {
-        movies: updatedMovies,
-      })
-    },
-  })
+        if (!cached) return
 
-  const { mutateAsync: removeMovieFromListMutation } = useMutation({
+        const updatedMovies = cached.movies.map((cachedMovie) => {
+          if (cachedMovie.id === data.movieAdded) {
+            const newList = [...cachedMovie.lists, data.listAdded]
+
+            return {
+              ...cachedMovie,
+              lists: newList,
+            }
+          }
+
+          return cachedMovie
+        })
+
+        queryClient.setQueryData(queryKeys, {
+          movies: updatedMovies,
+        })
+      },
+    })
+
+  const {
+    mutateAsync: removeMovieFromListMutation,
+    isPending: removeRequestPending,
+  } = useMutation({
     mutationFn: removeMovieFromList,
     onSuccess: (data) => {
       const moviesCached = queryClient.getQueryData(queryKeys)
@@ -149,7 +153,7 @@ export function CustomListVisualizer() {
         className={`w-[80%] mt-4 h-fit ${errors.name ? 'border-rose-600' : 'border-transparent'} border-2`}
       >
         <CommandInput
-          // disabled={isPending}
+          disabled={addRequestPending || removeRequestPending}
           className={'mb-2'}
           handleClick={handleSubmit(handleAddToPlaylist)}
           {...register('name')}
@@ -171,7 +175,7 @@ export function CustomListVisualizer() {
 
                 return (
                   <button
-                    // disabled={isPending}
+                    disabled={addRequestPending || removeRequestPending}
                     type={'button'}
                     onClick={() => selectList(list)}
                     key={list.id}

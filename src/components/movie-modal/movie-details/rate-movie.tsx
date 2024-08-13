@@ -12,7 +12,7 @@ export function RateMovie({ movieId }: { movieId: number }) {
   const [rating, setRating] = useState(0)
   const { userToken } = useContext(GlobalContext)
 
-  const { mutateAsync: rateMovieMutation } = useMutation({
+  const { mutateAsync: rateMovieMutation, isPending } = useMutation({
     mutationFn: rateMovie,
     onSuccess: (data) => {
       console.log('Filme Avaliado:')
@@ -64,7 +64,7 @@ export function RateMovie({ movieId }: { movieId: number }) {
         })}
       </div>
       <Button
-        disabled={!rating}
+        disabled={!rating || isPending}
         onClick={() => handleSubmitRating()}
         variant={'outline'}
         className={'text-black'}

@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator.tsx'
 import { signUp } from '@/api/user/sign-up.ts'
 import { toast } from 'sonner'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 
@@ -39,6 +39,7 @@ const signUpSchema = z
 export interface ISignUpSchema extends z.infer<typeof signUpSchema> {}
 
 export function SignUp() {
+  const [isLoading, setIsLoading] = useState(false)
   const { handleNavigate } = useContext(GlobalContext)
   const { genreList } = useContext(MovieContext)
   const {
@@ -51,6 +52,7 @@ export function SignUp() {
   })
 
   async function handleSignIn(data: ISignUpSchema) {
+    setIsLoading(true)
     try {
       await signUp(data)
       toast.success('Bem vindo!')
@@ -60,6 +62,7 @@ export function SignUp() {
       }, 1000)
     } catch (e) {
       toast.success(e.message)
+      setIsLoading(false)
     }
   }
 
@@ -172,7 +175,9 @@ export function SignUp() {
           )}
         </div>
 
-        <Button className={' mt-4'}>Cadastrar</Button>
+        <Button disabled={isLoading} className={' mt-4'}>
+          Cadastrar
+        </Button>
       </form>
 
       <Separator className={'w-6 m-auto'} />
@@ -183,9 +188,10 @@ export function SignUp() {
         }
       >
         <p className={'text-md font-semibold'}>Você já é cadastrado?</p>
-        <Link to={'/sign-in'}>
-          <Button variant={'outline'}>Entrar</Button>
-        </Link>
+        <Button disabled={isLoading} variant={'outline'}>
+          <Link to={'/sign-in'}></Link>
+          Entrar
+        </Button>
       </div>
     </div>
   )
