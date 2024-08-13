@@ -3,6 +3,7 @@ import { getUserCustomMovieList } from '@/api/list/get-user-custom-movie-list.ts
 import { useContext, useMemo } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { MovieSection } from '@/components/movie-section'
+import { CatalogueSkeleton } from '@/components/skeletons/catalogue-skeleton.tsx'
 
 interface IUserCustomListProps {
   list: IListSummary
@@ -11,16 +12,13 @@ interface IUserCustomListProps {
 export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
   const { userToken } = useContext(GlobalContext)
 
-  const { data: customLists } = useQuery({
+  const { data: customLists, isPending } = useQuery({
     queryKey: [`${name}`, id],
     queryFn: () => {
       if (userToken) return getUserCustomMovieList(userToken, id)
     },
     enabled: !!userToken,
   })
-
-  console.log('listas customizadas:')
-  console.log(customLists)
 
   const filteredMovies = useMemo(() => {
     if (customLists) {
@@ -33,10 +31,8 @@ export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
     return undefined
   }, [customLists])
 
-  console.log('listas filtradas:')
-  console.log(filteredMovies)
-
-  if (!filteredMovies || filteredMovies.length === 0) return <></>
+  if (!filteredMovies || filteredMovies.length === 0)
+    return <CatalogueSkeleton />
 
   return (
     <MovieSection.Root>
