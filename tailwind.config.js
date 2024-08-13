@@ -23,6 +23,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'home-background': "url('/src/assets/home/headerBackdrop.png')",
+        'gradient-principal':
+          'linear-gradient(45deg, rgba(254,213,2,1) 0%, rgba(173,40,49,1) 100%)',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -30,6 +32,7 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         darkBlue: '#000D14',
         semiDarkBlue: '#011b27',
+        darkRed: '#AD2831',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {

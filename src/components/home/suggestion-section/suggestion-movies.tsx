@@ -1,17 +1,17 @@
+import { MovieSection } from '@/components/movie-section'
 import { useQuery } from '@tanstack/react-query'
 import { getMoviesByGenre } from '@/api/movie/get-movies-by-genre.ts'
-import { MovieSection } from '@/components/movie-section'
+import { MovieSectionSkeleton } from '@/components/skeletons/movie-section-skeleton.tsx'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
-import { MovieSectionSkeleton } from '@/components/skeletons/movie-section-skeleton.tsx'
 
-interface ISuggestionSectionProps {
+interface ISuggestionMoviesProps {
   genre: IGenre
 }
 
-export function SuggestionSection({
+export function SuggestionMovies({
   genre: { id, name },
-}: ISuggestionSectionProps) {
+}: ISuggestionMoviesProps) {
   const { userToken } = useContext(GlobalContext)
 
   const { data: moviesByGenreList, isPending } = useQuery({

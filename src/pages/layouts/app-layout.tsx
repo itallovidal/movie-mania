@@ -14,7 +14,7 @@ export function AppLayout() {
   }, [pathname])
 
   return (
-    <div className={'text-white bg-darkBlue min-h-screen pb-24'}>
+    <div className={'text-white bg-darkBlue min-h-screen'}>
       <Navbar />
       <Outlet />
     </div>

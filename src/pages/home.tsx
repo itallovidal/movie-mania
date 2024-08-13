@@ -1,9 +1,8 @@
 import { Header } from '@/components/home/header.tsx'
 import { useContext, useMemo } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
-import { SuggestionSection } from '@/components/home/suggestion-section.tsx'
+import { SuggestionSection } from '@/components/home/suggestion-section/suggestion-section.tsx'
 import { CategorySelection } from '@/components/home/category-selection.tsx'
-import { MovieSectionSkeleton } from '@/components/skeletons/movie-section-skeleton.tsx'
 
 export function Home() {
   const { genreList } = useContext(MovieContext)
@@ -11,7 +10,7 @@ export function Home() {
   const randomGenres = useMemo(() => {
     if (genreList) {
       const randomIndexList: number[] = []
-      while (randomIndexList.length < 3) {
+      while (randomIndexList.length < 2) {
         const randomIndex = Math.floor(Math.random() * genreList?.length)
         if (randomIndex !== randomIndexList.at(-1)) {
           randomIndexList.push(randomIndex)
@@ -27,14 +26,8 @@ export function Home() {
   return (
     <>
       <Header />
+      <SuggestionSection randomGenres={randomGenres} />
       <CategorySelection genres={genreList} />
-      {randomGenres ? (
-        randomGenres.map((genre) => (
-          <SuggestionSection key={genre.id} genre={genre} />
-        ))
-      ) : (
-        <MovieSectionSkeleton />
-      )}
     </>
   )
 }

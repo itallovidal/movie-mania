@@ -52,16 +52,20 @@ export function CategorySelection({ genres }: ICategorySelectionProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={'w-[90%] max-w-grid-width mx-auto flex flex-col mb-24'}>
-      <MovieSectionTitle>Categorias</MovieSectionTitle>
-      <CategorySelectionContent genres={genres} isOpen={isOpen} />
-      <Button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className={'mx-auto mt-4'}
-        variant={'secondary'}
+    <div className={'bg-white pb-4'}>
+      <div
+        className={'w-[90%] py-12 max-w-grid-width mx-auto flex flex-col mb-24'}
       >
-        {!isOpen ? 'Ver todas Categorias' : 'Ocultar'}
-      </Button>
+        <MovieSectionTitle style={'text-black'}>Categorias</MovieSectionTitle>
+        <CategorySelectionContent genres={genres} isOpen={isOpen} />
+        <Button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className={'mx-auto mt-4'}
+          variant={'secondary'}
+        >
+          {!isOpen ? 'Ver todas Categorias' : 'Ocultar'}
+        </Button>
+      </div>
     </div>
   )
 }
