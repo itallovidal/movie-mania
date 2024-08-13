@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { MovieCard } from '@/components/movie-card/movie-card.tsx'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
+import { CatalogueSkeleton } from '@/components/skeletons/catalogue-skeleton.tsx'
 
 export function GenreCatalogue() {
   const { id } = useParams() as { id: string }
@@ -13,14 +14,11 @@ export function GenreCatalogue() {
     queryFn: () => getMoviesByGenre(id, userToken),
   })
 
-  console.log('filmes do catalogo:')
-  console.log(catalogue)
-
-  if (!catalogue) return <></>
+  if (!catalogue) return <CatalogueSkeleton />
 
   return (
     <>
-      <div className={`max-w-grid-width m-auto`}>
+      <div className={`animate-showing-opacity max-w-grid-width m-auto`}>
         <div className={'gap-y-24 flex-wrap flex justify-start flex-row '}>
           {catalogue.movies.map((movie) => {
             return (

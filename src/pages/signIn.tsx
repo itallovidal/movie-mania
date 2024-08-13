@@ -51,7 +51,7 @@ export function SignIn() {
   }
 
   return (
-    <div className={'grid place-content-center'}>
+    <div className={'animate-showing-up grid place-content-center'}>
       <form
         className={'min-w-80 gap-6 flex flex-col mb-4 '}
         onSubmit={handleSubmit(handleSignIn)}

@@ -6,9 +6,11 @@ import { Stars } from '@/components/stars.tsx'
 import { MovieDetailsBackgroundCover } from '@/components/movie-modal/movie-details/movie-details-background-cover.tsx'
 import { CustomListVisualizer } from '@/components/movie-modal/movie-details/custom-list-visualizer.tsx'
 import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
+import { GlobalContext } from '@/contexts/global-context.tsx'
 
 export function ModalDetailsSection() {
   const { movie, userRating } = useContext(MovieCardContext)
+  const { userToken } = useContext(GlobalContext)
 
   const ratingState = useMemo(() => {
     if (userRating && userRating.rating) {
@@ -35,8 +37,13 @@ export function ModalDetailsSection() {
         </div>
         <div className={'col-start-6 row-start-1 col-span-7 '}>
           <Details details={movie} />
-          {ratingState}
-          <CustomListVisualizer />
+
+          {userToken && (
+            <>
+              ratingState
+              <CustomListVisualizer />
+            </>
+          )}
         </div>
       </div>
     </div>

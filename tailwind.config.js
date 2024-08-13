@@ -75,10 +75,21 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'show-up': {
+          from: { opacity: 0, transform: 'translateY(50px)' },
+          to: { opacity: 1, transform: 'translateY(0px)' },
+        },
+        'show-opacity': {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'showing-up': 'show-up forwards 600ms cubic-bezier(0.22, 1, 0.36, 1)',
+        'showing-opacity':
+          'show-opacity forwards 1000ms cubic-bezier(0.22, 1, 0.36, 1)',
       },
       spacing: {
         'grid-width': '59rem',

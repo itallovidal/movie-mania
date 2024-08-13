@@ -37,7 +37,6 @@ export function MovieCard({
     staleTime: Infinity,
   })
 
-
   return (
     <MovieCardContext.Provider
       value={{

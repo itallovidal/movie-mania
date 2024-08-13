@@ -3,6 +3,7 @@ import { useContext, useMemo } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 import { SuggestionSection } from '@/components/home/suggestion-section.tsx'
 import { CategorySelection } from '@/components/home/category-selection.tsx'
+import { MovieSectionSkeleton } from '@/components/skeletons/movie-section-skeleton.tsx'
 
 export function Home() {
   const { genreList } = useContext(MovieContext)
@@ -27,10 +28,13 @@ export function Home() {
     <>
       <Header />
       <CategorySelection genres={genreList} />
-      {randomGenres &&
+      {randomGenres ? (
         randomGenres.map((genre) => (
           <SuggestionSection key={genre.id} genre={genre} />
-        ))}
+        ))
+      ) : (
+        <MovieSectionSkeleton />
+      )}
     </>
   )
 }
