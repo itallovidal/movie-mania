@@ -40,7 +40,7 @@ export function ModalDetailsSection() {
 
           {userToken && (
             <>
-              ratingState
+              {ratingState}
               <CustomListVisualizer />
             </>
           )}
