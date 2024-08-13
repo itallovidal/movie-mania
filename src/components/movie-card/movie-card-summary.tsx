@@ -7,7 +7,7 @@ interface IMovieCardSummaryProps {
 
 export function MovieCardSummary({ children, stars }: IMovieCardSummaryProps) {
   return (
-    <div>
+    <div className={'w-[225px]'}>
       <p
         className={
           'mt-4 line-clamp-2 text-left min-h-[4ch] font-bold font-josefin text-2xl'

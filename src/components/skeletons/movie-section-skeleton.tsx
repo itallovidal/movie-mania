@@ -4,13 +4,13 @@ import { MovieCardSkeleton } from '@/components/skeletons/movie-card-skeleton.ts
 export function MovieSectionSkeleton() {
   return (
     <div
-      className={'animate-showing-up w-[100%] max-w-grid-width m-auto mb-12'}
+      className={'animate-showing-up w-[90%] max-w-grid-width m-auto mb-12'}
     >
       <div className={'flex justify-between mb-4'}>
         <Skeleton className={'h-[24px] w-[150px]'} />
         <Skeleton className={'size-[20px] '} />
       </div>
-      <div className={'flex justify-between'}>
+      <div className={'flex gap-4 justify-between overflow-hidden'}>
         <MovieCardSkeleton />
         <MovieCardSkeleton />
         <MovieCardSkeleton />

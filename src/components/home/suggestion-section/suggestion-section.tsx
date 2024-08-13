@@ -14,22 +14,19 @@ function SuggestionSpan({ children }) {
 }
 
 function randomPhrases(genres: IGenre[]) {
-  console.log('->')
-  console.log(genres[0].name)
-
   if (!genres) return undefined
 
   const random = Math.round(Math.random() * 6)
   console.log(random)
 
   const h1Style =
-    'mb-12 font-josefin font-bold italic max-w-grid-width mx-auto text-4xl'
+    'mb-12 font-josefin w-[90%] font-bold italic max-w-grid-width mx-auto text-4xl'
 
   const phrases = {
     0: (
       <h1 className={h1Style}>
         Que tal um pouco de <SuggestionSpan>{genres[0].name}</SuggestionSpan>,
-        ou quem sabe... <SuggestionSpan children={genres[1].name} />
+        ou quem sabe... <SuggestionSpan children={genres[1].name} /> ?
       </h1>
     ),
     1: (
@@ -71,7 +68,7 @@ function randomPhrases(genres: IGenre[]) {
 
 export function SuggestionSection({ randomGenres }: ISuggestionSectionProps) {
   return (
-    <div className={`py-12`}>
+    <div className={`py-12 -mt-24`}>
       {randomGenres && randomPhrases(randomGenres)}
 
       {randomGenres ? (

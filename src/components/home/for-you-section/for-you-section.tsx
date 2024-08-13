@@ -11,7 +11,7 @@ export function ForYouSection() {
     <div className={`py-12 bg-gradient-principal`}>
       <h1
         className={
-          'mb-12 font-josefin font-bold italic max-w-grid-width mx-auto text-4xl'
+          'mb-12 font-josefin font-bold italic w-[90%] max-w-grid-width mx-auto text-4xl'
         }
       >
         Baseado em suas preferências:

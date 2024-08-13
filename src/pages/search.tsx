@@ -9,7 +9,7 @@ import { searchMovie } from '@/api/movie/search-movie.ts'
 export function Search() {
   const { pathname, search } = useLocation()
   const { handleNavigate } = useContext(GlobalContext)
-  const [title, setTitle] = useState()
+  const [title, setTitle] = useState<undefined | string>(undefined)
 
   useEffect(() => {
     const title = new URLSearchParams(search).get('title')
@@ -18,7 +18,7 @@ export function Search() {
       handleNavigate('/')
     }
 
-    setTitle(title)
+    if (title) setTitle(title)
   }, [pathname])
   const { userToken } = useContext(GlobalContext)
 

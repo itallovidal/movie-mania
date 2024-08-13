@@ -15,7 +15,7 @@ function CategoryCard({ genre }: ICategoryCardProps) {
   return (
     <Link
       className={
-        'animate-showing-up cursor-pointer bg-home-background bg-center h-[100px] w-[calc(33%-theme(gap.1))] p-2 rounded-md grid place-content-center'
+        'w-full animate-showing-up cursor-pointer bg-home-background bg-center h-[100px] sm:w-[calc(33%-theme(gap.1))] p-2 rounded-md grid place-content-center'
       }
       to={`/movie/${genre.id}`}
     >

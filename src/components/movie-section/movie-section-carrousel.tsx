@@ -26,7 +26,7 @@ export function MovieSectionCarrousel({
           movies.map((movie) => (
             <CarouselItem
               key={`${queryKeys[0]}-${movie.id}`}
-              className="basis-1/4"
+              className="basis-1/1 sm:basis-1/4"
             >
               <MovieCard movie={movie} queryKeys={queryKeys} />
             </CarouselItem>
