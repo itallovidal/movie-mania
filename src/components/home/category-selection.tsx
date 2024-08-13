@@ -52,11 +52,11 @@ export function CategorySelection({ genres }: ICategorySelectionProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={'bg-white pb-4'}>
+    <div className={'bg-white/5 pb-4'}>
       <div
         className={'w-[90%] py-12 max-w-grid-width mx-auto flex flex-col mb-24'}
       >
-        <MovieSectionTitle style={'text-black'}>Categorias</MovieSectionTitle>
+        <MovieSectionTitle>Categorias</MovieSectionTitle>
         <CategorySelectionContent genres={genres} isOpen={isOpen} />
         <Button
           onClick={() => setIsOpen((prev) => !prev)}

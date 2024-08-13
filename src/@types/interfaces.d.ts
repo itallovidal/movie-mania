@@ -46,5 +46,8 @@ interface IRating {
 
 interface IProfile {
   name: string
-  favoriteGenres: string[]
+  favoriteGenres: {
+    id: number
+    name: string
+  }[]
 }

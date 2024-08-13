@@ -16,8 +16,8 @@ export function AccountData() {
       <Separator />
       <CardContent className={'p-0 space-y-4'}>
         <div className={'w-full flex gap-2 justify-start'}>
-          <Badge>{profile.favoriteGenres[0]}</Badge>
-          <Badge>{profile.favoriteGenres[1]}</Badge>
+          <Badge>{profile.favoriteGenres[0].name}</Badge>
+          <Badge>{profile.favoriteGenres[1].name}</Badge>
         </div>
 
         {/* <Button variant={'outline'}>Atualizar Perfil</Button> */}

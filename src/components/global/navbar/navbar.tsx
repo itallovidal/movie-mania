@@ -19,7 +19,6 @@ export function Navbar() {
         </Link>
         <nav className={'space-x-2'}>
           <Navlink to={'/'}>Todos</Navlink>
-          <Navlink to={'/#foryou'}>Para você</Navlink>
           <NavGenresDropdown />
           {userToken && <ProfileDropdown />}
           {!userToken && <Navlink to={'/sign-in'}>Entrar</Navlink>}
