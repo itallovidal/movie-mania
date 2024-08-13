@@ -12,7 +12,7 @@ interface IUserCustomListProps {
 export function UserCustomList({ list: { name, id } }: IUserCustomListProps) {
   const { userToken } = useContext(GlobalContext)
 
-  const { data: customLists, isPending } = useQuery({
+  const { data: customLists } = useQuery({
     queryKey: [`${name}`, id],
     queryFn: () => {
       if (userToken) return getUserCustomMovieList(userToken, id)
