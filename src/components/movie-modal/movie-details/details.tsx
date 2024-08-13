@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge.tsx'
+import { ScrollArea } from '@/components/ui/scroll-area.tsx'
 
 interface IDetailsProps {
   details: Pick<
@@ -23,9 +24,11 @@ export function Details({
             Média de {rating.average}
           </span>
         </div>
-        <p className={'leading-7 w-9/12'}>
-          {overview || 'Sem resumos disponíveis.'}
-        </p>
+        <ScrollArea className={'h-48'}>
+          <p className={'leading-7 w-9/12'}>
+            {overview || 'Sem resumos disponíveis.'}
+          </p>
+        </ScrollArea>
       </div>
       <div className={'flex gap-2 mt-4 mb-2'}>
         {genres.map((genre) => {

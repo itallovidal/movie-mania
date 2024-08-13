@@ -1,54 +1,52 @@
 import { Input } from '@/components/ui/input'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover.tsx'
-
-import { Lightbulb, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
-import { SearchResult } from '@/components/search-result.tsx'
+import { z } from 'zod'
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
+import { GlobalContext } from '@/contexts/global-context.tsx'
+import { Button } from '@/components/ui/button.tsx'
+
+const searchInputSchema = z.object({
+  title: z.string().min(4),
+})
+
+export interface ISearchInputSchema extends z.infer<typeof searchInputSchema> {}
 
 export function SearchMovieInput() {
-  return (
-    <div className={'mt-4 max-w-96 flex items-center bg-white rounded-md pl-2'}>
-      <Search color={colors.black} />
-      <Popover className={'w-full '}>
-        <PopoverTrigger className={'flex w-full '}>
-          <Input className={'border-0 text-black w-full flex flex-1 '} />
-        </PopoverTrigger>
-        <PopoverContent
-          className={'w-[95%]'}
-          align={'start'}
-          side={'bottom'}
-          onOpenAutoFocus={(e) => e.preventDefault()}
-        >
-          <div
-            className={
-              'overflow-y-scroll max-h-[300px] overflow-x-hidden no-scrollbar w-full'
-            }
-          >
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-            <SearchResult />
-          </div>
+  const { handleNavigate } = useContext(GlobalContext)
+  const { handleSubmit, control } = useForm<ISearchInputSchema>({
+    resolver: zodResolver(searchInputSchema),
+  })
 
-          <div className={'flex gap-2 mt-6 justify-center'}>
-            <Lightbulb className={'text-muted-foreground'} />
-            <span className={'text-muted-foreground'}>
-              Scrolle para ver mais
-            </span>
-          </div>
-        </PopoverContent>
-      </Popover>
-    </div>
+  async function handleSearchMovie({ title }: ISearchInputSchema) {
+    handleNavigate(`/search?title=${title}`)
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit(handleSearchMovie)}
+      className={'mt-4 max-w-96 flex items-center bg-white rounded-md pl-2'}
+    >
+      <Button type={'submit'} variant={'ghost'}>
+        <Search color={colors.black} />
+      </Button>
+      <Controller
+        control={control}
+        render={({ field: { name, value, onChange, onBlur } }) => {
+          return (
+            <Input
+              name={name}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              className={'border-0 text-black w-full flex flex-1 '}
+            />
+          )
+        }}
+        name={'title'}
+      />
+    </form>
   )
 }

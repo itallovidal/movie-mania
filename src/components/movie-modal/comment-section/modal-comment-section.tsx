@@ -5,17 +5,17 @@ import { CommentCard } from '@/components/movie-modal/comment-section/comment-ca
 import { CommentForm } from '@/components/movie-modal/comment-section/comment-form.tsx'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
+import { CommentEmpty } from '@/components/movie-modal/comment-section/comment-empty.tsx'
+import { CommentCardSkeleton } from '@/components/skeletons/comment-card-skeleton.tsx'
 
 export function ModalCommentSection() {
   const { movie, isDialogOpen } = useContext(MovieCardContext)
   const { userToken } = useContext(GlobalContext)
-  const { data: post } = useQuery({
+  const { data: post, isPending } = useQuery({
     queryKey: ['comments'],
     queryFn: () => getMovieComments(movie.id),
     enabled: isDialogOpen,
   })
-
-  console.log(post)
 
   return (
     <div className={'h-full rounded-md bg-darkBlue p-4'}>
@@ -24,6 +24,8 @@ export function ModalCommentSection() {
           'mt-12 px-24 max-h-[450px] overflow-y-scroll no-scrollbar mb-12'
         }
       >
+        {isPending && <CommentCardSkeleton />}
+        {post && post.comments.length === 0 && <CommentEmpty />}
         {post &&
           post.comments.map((comment) => {
             return <CommentCard key={comment.id} comment={comment} />

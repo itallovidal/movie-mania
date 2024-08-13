@@ -8,6 +8,7 @@ import { AppLayout } from '@/pages/layouts/app-layout.tsx'
 import { GlobalContextProvider } from '@/contexts/global-context.tsx'
 import { GenreCatalogue } from '@/pages/genre-catalogue.tsx'
 import { MovieContextProvider } from '@/contexts/movie-context.tsx'
+import { Search } from '@/pages/search.tsx'
 
 export function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export function AppRoutes() {
               <Route path={'/'} element={<Home />} />
               <Route path={'/movie/:id'} element={<GenreCatalogue />} />
               <Route path={'/profile'} element={<Profile />} />
+              <Route path={'/search'} element={<Search />} />
             </Route>
 
             <Route path={'/'} element={<AuthLayout />}>

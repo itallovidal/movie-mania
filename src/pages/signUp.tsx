@@ -189,8 +189,7 @@ export function SignUp() {
       >
         <p className={'text-md font-semibold'}>Você já é cadastrado?</p>
         <Button disabled={isLoading} variant={'outline'}>
-          <Link to={'/sign-in'}></Link>
-          Entrar
+          <Link to={'/sign-in'}>Entrar</Link>
         </Button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { Clapperboard } from 'lucide-react'
 import { Button } from '@/components/ui/button.tsx'
 
-export function SearchResult() {
+export function SearchResult({ name }: { name: string }) {
   return (
     <Button
       variant={'ghost'}
@@ -9,7 +9,7 @@ export function SearchResult() {
     >
       <Clapperboard className={'w-8'} />
       <span className={'flex-1  text-left leading-loose text-pretty'}>
-        O senhor dos anéis: o retorno do teu anel
+        {name}
       </span>
     </Button>
   )

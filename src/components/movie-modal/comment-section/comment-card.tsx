@@ -4,7 +4,7 @@ export function CommentCard({ comment }: { comment: IComment }) {
   if (!comment) return <></>
 
   return (
-    <div className={'flex flex-col gap-2 my-4 text-white'}>
+    <div className={'animate-showing-opacity flex flex-col gap-2 my-4 text-white'}>
       <div className={'flex items-center'}>
         <span className={'text-1xl mr-2'}>{comment.user.name}</span>
         {comment.user.rating ? (

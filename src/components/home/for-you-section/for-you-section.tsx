@@ -5,6 +5,8 @@ import { ForYouMovies } from '@/components/home/for-you-section/for-you-movies.t
 export function ForYouSection() {
   const { profile } = useContext(GlobalContext)
 
+  if (!profile) return <></>
+
   return (
     <div className={`py-12 bg-gradient-principal`}>
       <h1

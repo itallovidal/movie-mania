@@ -32,6 +32,10 @@ interface IRateMovieResponse {
   }
 }
 
+interface ISearchedMovieResponse {
+  movies: IMovie[]
+}
+
 interface IGetUserRatingByMovieIdResponse {
   rating: IRating
 }
