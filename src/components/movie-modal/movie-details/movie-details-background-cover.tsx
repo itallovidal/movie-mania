@@ -13,7 +13,7 @@ export function MovieDetailsBackgroundCover({
         className={'w-full h-full object-cover'}
         src={
           backdrop_path
-            ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+            ? `https://image.tmdb.org/t/p/w1280${backdrop_path}`
             : backdropPlaceholder
         }
         alt=""

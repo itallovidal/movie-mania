@@ -17,7 +17,7 @@ export function MovieModal() {
     <DialogContent
       title={`${movie.title} Details`}
       className={
-        'bg-transparent min-w-grid-width p-0 overflow-hidden border-0 outline-0 max-h-[800px]'
+        'bg-transparent p-0 w-full lg:min-w-grid-width overflow-hidden border-0 outline-0 max-h-[800px] overflow-y-scroll lg:overflow-y-auto'
       }
     >
       <DialogTitle className={'hidden'}>`${movie.title} Details`</DialogTitle>

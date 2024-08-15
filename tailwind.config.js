@@ -23,6 +23,25 @@ module.exports = {
     extend: {
       backgroundImage: {
         'home-background': "url('/src/assets/home/headerBackdrop.png')",
+        'category-action': "url('/src/assets/categories/acao.jpg')",
+        'category-thriller': "url('/src/assets/categories/thiller.jpg')",
+        'category-animation': "url('/src/assets/categories/animacao.jpg')",
+        'category-adventure': "url('/src/assets/categories/aventura.jpg')",
+        'category-comedy': "url('/src/assets/categories/comedia.jpg')",
+        'category-crime': "url('/src/assets/categories/crime.jpg')",
+        'category-documentary':
+          "url('/src/assets/categories/documentario.jpg')",
+        'category-drama': "url('/src/assets/categories/drama.jpg')",
+        'category-family': "url('/src/assets/categories/familia.jpg')",
+        'category-fantasy': "url('/src/assets/categories/fantasia.jpg')",
+        'category-bangbang': "url('/src/assets/categories/faroeste.jpg')",
+        'category-cience-fiction': "url('/src/assets/categories/ficcao.jpg')",
+        'category-war': "url('/src/assets/categories/guerra.jpg')",
+        'category-history': "url('/src/assets/categories/historia.jpg')",
+        'category-mistery': "url('/src/assets/categories/misterio.jpg')",
+        'category-musical': "url('/src/assets/categories/musical.jpg')",
+        'category-romance': "url('/src/assets/categories/romance.jpg')",
+        'category-horror': "url('/src/assets/categories/terror.jpg')",
         'gradient-principal':
           'linear-gradient(45deg, rgba(254,213,2,1) 0%, rgba(173,40,49,1) 100%)',
       },

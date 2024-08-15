@@ -1,8 +1,8 @@
 import { api } from '@/lib/axios.config.ts'
 
 export interface ISearchMovieRequest {
-  token: string
-  title: number
+  token: string | null
+  title: string
 }
 
 export async function searchMovie({

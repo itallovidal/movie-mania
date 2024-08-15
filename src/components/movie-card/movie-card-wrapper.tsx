@@ -13,7 +13,15 @@ export function MovieCardWrapper({ children }: IMovieCardWrapper) {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={changeDialogState}>
-      <DialogTrigger>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <div
+          className={
+            'cursor-pointer w-full lg:max-w-[225px] flex flex-col items-center justify-center'
+          }
+        >
+          {children}
+        </div>
+      </DialogTrigger>
       <MovieModal />
     </Dialog>
   )

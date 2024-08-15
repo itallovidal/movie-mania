@@ -30,7 +30,7 @@ export function CommentForm({ movieId }: { movieId: number }) {
     resolver: zodResolver(commentSchema),
   })
 
-  const { mutateAsync: postCommentMutation } = useMutation({
+  const { mutateAsync: postCommentMutation, isPending } = useMutation({
     mutationFn: postComment,
     onSuccess: (data) => {
       const cached = queryClient.getQueryData<IGetMovieCommentsResponse>([
@@ -70,13 +70,14 @@ export function CommentForm({ movieId }: { movieId: number }) {
   return (
     <form
       onSubmit={handleSubmit(handlePostComment)}
-      className={'text-white px-24 my-12'}
+      className={'text-white lg:px-24 my-12'}
     >
       <Textarea
         {...register('text')}
         placeholder="Digite seu comentário.."
         className={'text-darkBlue mb-4'}
         name={'text'}
+        disabled={isPending}
       />
       {errors.text?.message && (
         <span className={'text-rose-500'}>{errors.text?.message}</span>
@@ -85,7 +86,7 @@ export function CommentForm({ movieId }: { movieId: number }) {
         <span className={'text-muted-foreground'}>
           Ajude a tornar a área de comentários segura. Seja gentil.
         </span>
-        <Button type={'submit'} variant={'ghost'}>
+        <Button disabled={isPending} type={'submit'} variant={'ghost'}>
           Enviar
         </Button>
       </div>

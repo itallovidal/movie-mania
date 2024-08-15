@@ -150,7 +150,7 @@ export function CustomListVisualizer() {
   return (
     <form onSubmit={handleSubmit(handleAddToPlaylist)}>
       <Command
-        className={`w-[80%] mt-4 h-fit ${errors.name ? 'border-rose-600' : 'border-transparent'} border-2`}
+        className={`w-full lg:w-[90%] mt-4 h-fit ${errors.name ? 'border-rose-600' : 'border-transparent'} border-2`}
       >
         <CommandInput
           disabled={addRequestPending || removeRequestPending}

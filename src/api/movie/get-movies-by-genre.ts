@@ -1,8 +1,8 @@
 import { api } from '@/lib/axios.config.ts'
 
 export async function getMoviesByGenre(
-  genre: string,
-  token: string | undefined,
+  genre: number,
+  token: string | null,
 ): Promise<IGetMoviesByGenreResponse> {
   const response = await api.get(`movie/random/${genre}`, {
     headers: {

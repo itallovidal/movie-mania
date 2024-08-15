@@ -24,27 +24,31 @@ export function Search() {
 
   const { data: moviesSearched, isPending } = useQuery({
     queryKey: [`${title}`],
-    queryFn: () =>
-      searchMovie({
-        title,
-        token: userToken,
-      }),
+    queryFn: () => {
+      if (title)
+        return searchMovie({
+          title,
+          token: userToken,
+        })
+    },
     enabled: !!title,
   })
 
   if (isPending) return <CatalogueSkeleton />
 
-  if (moviesSearched.movies) {
+  if (title && moviesSearched && moviesSearched.movies) {
     return (
       <>
-        <div className={`animate-showing-opacity max-w-grid-width m-auto`}>
-          <div className={'gap-y-24 flex-wrap flex justify-start flex-row '}>
+        <div
+          className={`animate-showing-opacity w-[90%] max-w-grid-width m-auto`}
+        >
+          <div
+            className={
+              'gap-y-2 lg:gap-x-2 lg:gap-y-24 flex-wrap flex justify-start flex-row'
+            }
+          >
             {moviesSearched.movies.map((movie) => {
-              return (
-                <div key={movie.id} className={'w-1/4'}>
-                  <MovieCard movie={movie} queryKeys={[title]} />
-                </div>
-              )
+              return <MovieCard movie={movie} queryKeys={[title]} />
             })}
           </div>
         </div>

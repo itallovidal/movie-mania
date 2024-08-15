@@ -2,10 +2,10 @@ import { MovieSectionSkeleton } from '@/components/skeletons/movie-section-skele
 import { SuggestionMovies } from '@/components/home/suggestion-section/suggestion-movies.tsx'
 
 interface ISuggestionSectionProps {
-  randomGenres: IGenre[]
+  randomGenres: IGenre[] | undefined
 }
 
-function SuggestionSpan({ children }) {
+function SuggestionSpan({ children }: { children: string }) {
   return (
     <span className={'font-josefin font-bold italic text-yellow-400 text-4xl'}>
       {children}
@@ -17,7 +17,6 @@ function randomPhrases(genres: IGenre[]) {
   if (!genres) return undefined
 
   const random = Math.round(Math.random() * 6)
-  console.log(random)
 
   const h1Style =
     'mb-12 font-josefin w-[90%] font-bold italic max-w-grid-width mx-auto text-4xl'
@@ -72,8 +71,8 @@ export function SuggestionSection({ randomGenres }: ISuggestionSectionProps) {
       {randomGenres && randomPhrases(randomGenres)}
 
       {randomGenres ? (
-        randomGenres.map((genre, index) => (
-          <SuggestionMovies key={genre.id} genre={genre} index={index} />
+        randomGenres.map((genre) => (
+          <SuggestionMovies key={genre.id} genre={genre} />
         ))
       ) : (
         <MovieSectionSkeleton />

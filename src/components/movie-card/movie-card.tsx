@@ -8,7 +8,7 @@ import { GlobalContext } from '@/contexts/global-context.tsx'
 interface IMovieCardContextProps {
   movie: IMovie
   userRating: IRating | undefined
-  queryKeys: never[]
+  queryKeys: unknown[]
   isDialogOpen: boolean
   changeDialogState: () => void
 }
@@ -19,7 +19,7 @@ export function MovieCard({
   queryKeys,
 }: {
   movie: IMovie
-  queryKeys: never[]
+  queryKeys: unknown[]
 }) {
   const { userToken } = useContext(GlobalContext)
   const [isDialogOpen, setIsDialogOpen] = useState(false)

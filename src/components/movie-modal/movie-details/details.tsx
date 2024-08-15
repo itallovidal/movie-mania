@@ -1,5 +1,7 @@
 import { Badge } from '@/components/ui/badge.tsx'
 import { ScrollArea } from '@/components/ui/scroll-area.tsx'
+import { X } from 'lucide-react'
+import { DialogClose } from '@/components/ui/dialog.tsx'
 
 interface IDetailsProps {
   details: Pick<
@@ -14,18 +16,28 @@ export function Details({
   return (
     <>
       <div className={'space-y-2  w-full'}>
-        <div className={'flex justify-between items-center'}>
-          <h1 className={'text-4xl w-1/2 font-josefin'}>{title}</h1>
+        <div
+          className={
+            'flex justify-between items-center flex-col-reverse lg:flex-row'
+          }
+        >
+          <h1 className={'text-2xl lg:text-4xl w-full lg:w-1/2 font-josefin'}>
+            {title}
+          </h1>
           <span
             className={
-              'text-darkBlue bg-white px-4 py-2 gap content-center rounded-l-md h-fit '
+              'hidden lg:block text-darkBlue bg-white px-4 py-2 gap content-center rounded-md rounded-r-none h-fit lg:w-fit w-full mb-4'
             }
           >
             Média de {rating.average}
           </span>
+
+          <DialogClose className={'-mt-4 lg:hidden my-4'}>
+            <X />
+          </DialogClose>
         </div>
-        <ScrollArea className={'h-48'}>
-          <p className={'leading-7 w-9/12'}>
+        <ScrollArea className={'lg:max-h-48 h-28'}>
+          <p className={'leading-7 w-full lg:w-9/12'}>
             {overview || 'Sem resumos disponíveis.'}
           </p>
         </ScrollArea>

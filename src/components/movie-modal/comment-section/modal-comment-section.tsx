@@ -21,7 +21,7 @@ export function ModalCommentSection() {
     <div className={'h-full rounded-md bg-darkBlue p-4'}>
       <div
         className={
-          'mt-12 px-24 max-h-[450px] overflow-y-scroll no-scrollbar mb-12'
+          'mt-12 lg:px-24 w-full lg:max-h-[450px] max-h-[250px] overflow-y-scroll no-scrollbar mb-12'
         }
       >
         {isPending && <CommentCardSkeleton />}

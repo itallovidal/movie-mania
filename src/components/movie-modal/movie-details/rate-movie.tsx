@@ -15,9 +15,6 @@ export function RateMovie({ movieId }: { movieId: number }) {
   const { mutateAsync: rateMovieMutation, isPending } = useMutation({
     mutationFn: rateMovie,
     onSuccess: (data) => {
-      console.log('Filme Avaliado:')
-      console.log(data)
-
       queryClient.setQueryData(['user-movie-rating', data.created.movieId], {
         rating: data.created,
       })
@@ -40,8 +37,8 @@ export function RateMovie({ movieId }: { movieId: number }) {
   }
 
   return (
-    <div className={'flex bg-white my-4 p-2 rounded w-fit gap-4'}>
-      <div className={'flex mt-2 cursor-pointer'}>
+    <div className={'flex bg-white my-4 p-2 rounded w-full lg:w-fit gap-4'}>
+      <div className={'flex mt-2 w-full cursor-pointer'}>
         {Array.from({ length: 5 }, (_, i) => {
           if (rating >= i + 1) {
             return (
@@ -67,7 +64,7 @@ export function RateMovie({ movieId }: { movieId: number }) {
         disabled={!rating || isPending}
         onClick={() => handleSubmitRating()}
         variant={'outline'}
-        className={'text-black'}
+        className={'text-black w-full'}
       >
         Avaliar
       </Button>
