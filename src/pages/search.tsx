@@ -20,9 +20,10 @@ export function Search() {
     }
 
     if (title) {
+      console.log(`Mudou a pesquisa`)
       setTitle(title)
     }
-  }, [pathname, title])
+  }, [pathname, title, window.location.href])
   const { userToken } = useContext(GlobalContext)
 
   const { data: moviesSearched, isPending } = useQuery({
@@ -36,6 +37,8 @@ export function Search() {
     },
     enabled: !!title,
   })
+
+  console.log(moviesSearched)
 
   if (isPending) return <CatalogueSkeleton />
 
@@ -56,7 +59,9 @@ export function Search() {
             }
           >
             {moviesSearched.movies.map((movie) => {
-              return <MovieCard movie={movie} queryKeys={[title]} />
+              return (
+                <MovieCard key={movie.id} movie={movie} queryKeys={[title]} />
+              )
             })}
           </div>
         </div>
