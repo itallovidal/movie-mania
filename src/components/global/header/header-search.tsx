@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/input'
+import { Input } from '@/components/ui/input.tsx'
 import { Search } from 'lucide-react'
 import * as colors from 'tailwindcss/colors'
 import { z } from 'zod'
@@ -14,7 +14,7 @@ const searchInputSchema = z.object({
 
 export interface ISearchInputSchema extends z.infer<typeof searchInputSchema> {}
 
-export function SearchMovieInput() {
+export function HeaderSearch() {
   const { handleNavigate } = useContext(GlobalContext)
   const { handleSubmit, control } = useForm<ISearchInputSchema>({
     resolver: zodResolver(searchInputSchema),

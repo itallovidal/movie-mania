@@ -17,7 +17,9 @@ export function CommentCard({ comment }: { comment: IComment }) {
           </span>
         )}
       </div>
-      <p className={'p-4 bg-semiDarkBlue rounded-md'}>{comment.comment}</p>
+      <p className={'max-w-full p-4 bg-semiDarkBlue rounded-md break-all'}>
+        {comment.comment}
+      </p>
       <span className={'self-end'}>{comment.created_at}</span>
     </div>
   )

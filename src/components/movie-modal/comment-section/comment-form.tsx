@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/lib/reactQuery.ts'
 
 const commentSchema = z.object({
-  text: z.string().min(3, {
+  text: z.string().min(5, {
     message:
       'Ops, o tamanho necessário para fazer um comentário são 3 caracteres.',
   }),
@@ -78,6 +78,7 @@ export function CommentForm({ movieId }: { movieId: number }) {
         className={'text-darkBlue mb-4'}
         name={'text'}
         disabled={isPending}
+        maxLength={150}
       />
       {errors.text?.message && (
         <span className={'text-rose-500'}>{errors.text?.message}</span>

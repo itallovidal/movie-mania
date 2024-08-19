@@ -5,7 +5,7 @@ export async function signUp(data: ISignUpSchema) {
   const response = await api.post('user/sign-up', data)
 
   if (response.status !== 201) {
-    throw new Error(response.data.description)
+    throw new Error(response.data.message)
   }
 
   return response.data

@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
 import { CatalogueSkeleton } from '@/components/skeletons/catalogue-skeleton.tsx'
 import { searchMovie } from '@/api/movie/search-movie.ts'
+import { Header } from '@/components/global/header'
 
 export function Search() {
   const { pathname, search } = useLocation()
@@ -18,12 +19,14 @@ export function Search() {
       handleNavigate('/')
     }
 
-    if (title) setTitle(title)
-  }, [pathname])
+    if (title) {
+      setTitle(title)
+    }
+  }, [pathname, title])
   const { userToken } = useContext(GlobalContext)
 
   const { data: moviesSearched, isPending } = useQuery({
-    queryKey: [`${title}`],
+    queryKey: [`search-result`, title],
     queryFn: () => {
       if (title)
         return searchMovie({
@@ -39,6 +42,11 @@ export function Search() {
   if (title && moviesSearched && moviesSearched.movies) {
     return (
       <>
+        <Header.Wrapper>
+          <Header.Result query={title} />
+          <Header.Search />
+        </Header.Wrapper>
+
         <div
           className={`animate-showing-opacity w-[90%] max-w-grid-width m-auto`}
         >

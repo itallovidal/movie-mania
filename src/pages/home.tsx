@@ -1,9 +1,9 @@
-import { Header } from '@/components/home/header.tsx'
 import { useContext, useMemo } from 'react'
 import { MovieContext } from '@/contexts/movie-context.tsx'
 import { SuggestionSection } from '@/components/home/suggestion-section/suggestion-section.tsx'
 import { CategorySelection } from '@/components/home/category-selection.tsx'
 import { ForYouSection } from '@/components/home/for-you-section/for-you-section.tsx'
+import { Header } from '@/components/global/header'
 
 export function Home() {
   const { genreList } = useContext(MovieContext)
@@ -26,7 +26,10 @@ export function Home() {
 
   return (
     <>
-      <Header />
+      <Header.Wrapper>
+        <Header.Title />
+        <Header.Search />
+      </Header.Wrapper>
       <SuggestionSection randomGenres={randomGenres} />
       <ForYouSection />
       <CategorySelection genres={genreList} />

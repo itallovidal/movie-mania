@@ -7,8 +7,9 @@ import {
 } from '@/components/ui/tabs.tsx'
 import { ModalCommentSection } from '@/components/movie-modal/comment-section/modal-comment-section.tsx'
 import { ModalDetailsSection } from '@/components/movie-modal/movie-details/modal-details-section.tsx'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { MovieCardContext } from '@/components/movie-card/movie-card.tsx'
+import { queryClient } from '@/lib/reactQuery.ts'
 
 export function MovieModal() {
   const { movie } = useContext(MovieCardContext)

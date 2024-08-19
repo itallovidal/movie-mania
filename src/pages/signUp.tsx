@@ -61,7 +61,10 @@ export function SignUp() {
         handleNavigate('/sign-in')
       }, 1000)
     } catch (e) {
-      toast.success(e.message)
+      if (e instanceof Error) {
+        toast.error(e.message)
+      }
+      toast.error(`Tente novamente mais tarde.`)
       setIsLoading(false)
     }
   }
