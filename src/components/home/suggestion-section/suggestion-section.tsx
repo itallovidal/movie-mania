@@ -19,7 +19,7 @@ function randomPhrases(genres: IGenre[]) {
   const random = Math.round(Math.random() * 6)
 
   const h1Style =
-    'mb-12 font-josefin w-[90%] font-bold italic max-w-grid-width mx-auto text-4xl'
+    'text-center mb-12 font-josefin w-[50%] font-bold italic max-w-grid-width mx-auto text-2xl'
 
   const phrases = {
     0: (
@@ -67,7 +67,7 @@ function randomPhrases(genres: IGenre[]) {
 
 export function SuggestionSection({ randomGenres }: ISuggestionSectionProps) {
   return (
-    <div className={`py-12 -mt-24`}>
+    <div className={`py-12 `}>
       {randomGenres && randomPhrases(randomGenres)}
 
       {randomGenres ? (

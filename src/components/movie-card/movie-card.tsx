@@ -48,11 +48,11 @@ export function MovieCard({
       }}
     >
       <Card.Wrapper>
+        <Card.Summary stars={user?.rating.rating} />
+        <ImageCover cover={movie.poster_path} />
         <Card.Header>
           {`${movie.rating.average} de ${movie.rating.ratingsCount} avaliações`}
         </Card.Header>
-        <ImageCover cover={movie.poster_path} />
-        <Card.Summary stars={user?.rating.rating}>{movie.title}</Card.Summary>
       </Card.Wrapper>
     </MovieCardContext.Provider>
   )

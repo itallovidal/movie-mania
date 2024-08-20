@@ -78,6 +78,7 @@ export function SignIn() {
           <p className={'text-lg font-semibold font-roboto'}>Senha</p>
           <Input
             {...register('password')}
+            type={'password'}
             id={'password'}
             placeholder={'Digite sua senha..'}
           />

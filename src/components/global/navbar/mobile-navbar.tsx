@@ -13,7 +13,6 @@ import * as React from 'react'
 import { Navlink } from '@/components/global/navbar/navlink.tsx'
 import { useContext } from 'react'
 import { GlobalContext } from '@/contexts/global-context.tsx'
-import { NavGenresDropdown } from '@/components/global/navbar/nav-genres-dropdown.tsx'
 import { ProfileDropdown } from '@/components/profile/profile-dropdown.tsx'
 
 export function MobileNavbar() {
@@ -21,7 +20,7 @@ export function MobileNavbar() {
 
   return (
     <Drawer direction={'left'}>
-      <DrawerTrigger className={'fixed top-4 right-4 z-30 sm:hidden'}>
+      <DrawerTrigger asChild className={'fixed top-4 right-4 z-30 sm:hidden'}>
         <Button>
           <Menu />
         </Button>

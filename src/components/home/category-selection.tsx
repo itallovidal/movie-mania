@@ -49,7 +49,7 @@ function CategoryCard({ genre }: ICategoryCardProps) {
     9648: 'bg-category-mistery',
     10749: 'bg-category-romance',
     878: 'bg-category-cience-fiction',
-    10770: 'home-background',
+    10770: 'bg-home-background',
     53: 'bg-category-thriller',
     10752: 'bg-category-war',
     37: 'bg-category-bangbang',
@@ -80,7 +80,7 @@ function CategorySelectionContent({
       {genres &&
         genres.map((genre, index) => {
           if (!isOpen && index > 5) {
-            return <></>
+            return
           }
 
           return <CategoryCard key={`${genre.id - index}`} genre={genre} />

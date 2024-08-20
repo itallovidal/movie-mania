@@ -3,7 +3,7 @@ import * as colors from 'tailwindcss/colors'
 
 export function Stars({ rating }: { rating: number }) {
   return (
-    <div className={'flex my-2'}>
+    <div className={'flex my-2 w-fit'}>
       {Array.from({ length: 5 }, (_, i) => {
         if (rating >= i + 1) {
           return (

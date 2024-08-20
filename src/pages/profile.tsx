@@ -14,7 +14,7 @@ export function Profile() {
     >
       <AccountData />
 
-      <div className={''}>
+      <div>
         {userLists &&
           userLists?.map((list) => {
             return <UserCustomList key={list.id} list={list} />

@@ -104,6 +104,7 @@ export function SignUp() {
         <div className={'flex flex-col gap-2'}>
           <p className={'text-lg font-semibold font-roboto'}>Senha</p>
           <Input
+            type={'password'}
             {...register('password')}
             id={'password'}
             placeholder={'Digite sua senha..'}

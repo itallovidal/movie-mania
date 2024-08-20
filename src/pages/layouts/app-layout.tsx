@@ -8,6 +8,8 @@ export function AppLayout() {
   const { handleNavigate, userToken } = useContext(GlobalContext)
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     if (pathname === '/profile' && !userToken) {
       handleNavigate('/')
     }

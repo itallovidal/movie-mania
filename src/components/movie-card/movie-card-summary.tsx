@@ -1,22 +1,19 @@
 import { Stars } from '@/components/stars.tsx'
 
 interface IMovieCardSummaryProps {
-  children: string
   stars: number | null | undefined
 }
 
-export function MovieCardSummary({ children, stars }: IMovieCardSummaryProps) {
-  return (
-    <div className={'w-[225px]'}>
-      <p
-        className={
-          'mt-4 line-clamp-2 text-left min-h-[4ch] font-bold font-josefin text-2xl'
-        }
-      >
-        {children}
-      </p>
+export function MovieCardSummary({ stars }: IMovieCardSummaryProps) {
+  if (!stars) return <></>
 
-      {stars && <Stars rating={stars} />}
+  return (
+    <div
+      className={
+        'rounded-md bg-white w-fit p-2 flex justify-center top-[-10%] absolute z-40 shadow-2xl animate-showing-up'
+      }
+    >
+      <Stars rating={stars} />
     </div>
   )
 }

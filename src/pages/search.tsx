@@ -60,7 +60,11 @@ export function Search() {
           >
             {moviesSearched.movies.map((movie) => {
               return (
-                <MovieCard key={movie.id} movie={movie} queryKeys={[title]} />
+                <MovieCard
+                  key={movie.id}
+                  movie={movie}
+                  queryKeys={[`search-result`, title]}
+                />
               )
             })}
           </div>

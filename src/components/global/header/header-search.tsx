@@ -27,7 +27,7 @@ export function HeaderSearch() {
   return (
     <form
       onSubmit={handleSubmit(handleSearchMovie)}
-      className={'mt-4 max-w-96 flex items-center bg-white rounded-md pl-2'}
+      className={'mt-4 w-full translate-y-[50%] flex  bg-white rounded-md '}
     >
       <Button type={'submit'} variant={'ghost'}>
         <Search color={colors.black} />

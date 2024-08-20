@@ -16,7 +16,7 @@ export function MovieCardWrapper({ children }: IMovieCardWrapper) {
       <DialogTrigger asChild>
         <div
           className={
-            'cursor-pointer w-full lg:max-w-[225px] flex flex-col items-center justify-center'
+            'cursor-pointer w-full lg:max-w-[225px]  flex flex-col items-center justify-center relative mt-10'
           }
         >
           {children}
