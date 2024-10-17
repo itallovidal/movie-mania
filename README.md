@@ -8,7 +8,7 @@ Comece a usar o movieMania rapidamente!
 
 1. **Clone o repositório:**
     ```sh
-    git clone https://github.com/droidmarx/movieMania.git
+    git clone https://github.com/itallovidal/movie-mania
     cd movieMania
     ```
 
